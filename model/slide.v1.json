@@ -1,26 +1,7 @@
 {
   "title": "Slide v1",
   "type": "object",
-  "x-examples": {
-    "example-1": {
-      "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-      "title": "string",
-      "description": "string",
-      "tags": [
-        "string"
-      ],
-      "modified": 0,
-      "created": 0,
-      "modifiedBy": "string",
-      "createdBy": "string",
-      "template": {
-        "id": "string",
-        "options": [
-          null
-        ]
-      }
-    }
-  },
+  "x-examples": {},
   "properties": {
     "id": {
       "type": "string",
@@ -60,12 +41,12 @@
       "properties": {
         "id": {
           "type": "string",
-          "format": "uri-reference"
+          "format": "uuid"
         },
         "options": {
           "type": "array",
           "items": {
-            "type": "string"
+            "type": "object"
           }
         }
       }

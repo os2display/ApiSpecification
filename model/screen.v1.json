@@ -1,28 +1,7 @@
 {
   "title": "Screen",
   "type": "object",
-  "x-examples": {
-    "example-1": {
-      "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
-      "title": "string",
-      "description": "string",
-      "regions": [
-        {
-          "name": "string",
-          "channels": [
-            "string"
-          ]
-        }
-      ],
-      "tags": [
-        "string"
-      ],
-      "modified": 0,
-      "created": 0,
-      "modifiedBy": "string",
-      "createdBy": "string"
-    }
-  },
+  "x-examples": {},
   "properties": {
     "id": {
       "type": "string",

@@ -180,6 +180,25 @@ paths:
             application/json:
               schema:
                 $ref: ../model/playlist.v1.json
+              examples:
+                example-1:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: string
+                    description: string
+                    tags:
+                      - string
+                    modified: 0
+                    created: 0
+                    modifiedBy: string
+                    createdBy: string
+                    slides:
+                      - id: string
+                        weight: 0
+                        duration: 0
+                    published:
+                      from: 0
+                      to: 0
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -251,6 +270,53 @@ paths:
             application/json:
               schema:
                 $ref: ../model/slide.v1.json
+              examples:
+                Slide 1:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: Slide 1
+                    description: This is the first slide named one
+                    tags:
+                      - itk
+                      - mock
+                      - example
+                    modified: 1622555123
+                    created: 1622554031
+                    modifiedBy: Ole Olesen
+                    createdBy: Jens Jensen
+                    template:
+                      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      options:
+                        - fade: false
+                        - icon: true
+                          url: 'http://test.local.itkdev.dk/icon.png'
+                    duration: 45
+                    content:
+                      text: This is slide content
+                      media: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    published: 1
+                Slide 2:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: Slide 2
+                    description: This is the next slide named two
+                    tags:
+                      - itk
+                      - mock
+                      - example
+                    modified: 1622555475
+                    created: 1622553404
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
+                    template:
+                      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      options:
+                        - fade: true
+                    duration: 90
+                    content:
+                      text: This is slide content text
+                      media: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    published: 1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -283,6 +349,28 @@ paths:
                 required:
                   - offset
                   - more
+              examples:
+                Slides:
+                  value:
+                    slides:
+                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                        title: string
+                        description: string
+                        tags:
+                          - string
+                        modified: 0
+                        created: 0
+                        modifiedBy: string
+                        createdBy: string
+                        template:
+                          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                          options:
+                            - {}
+                        duration: 0
+                        content: {}
+                        published: 0
+                    offset: 0
+                    more: true
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -319,6 +407,29 @@ paths:
             application/json:
               schema:
                 $ref: ../model/template.v1.json
+              examples:
+                Template 1:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: Template 1
+                    description: This is a image example template
+                    tags:
+                      - itk
+                      - mock
+                    modified: 1622555659
+                    created: 1622552649
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olensen
+                    icon: 'http://templates.itkdev.dk/image/icon.png'
+                    resources:
+                      component: 'http://templates.itkdev.dk/image/image.js'
+                      assest:
+                        - type: css
+                          url: 'http://templates.itkdev.dk/image/image.css'
+                      options:
+                        fade: true
+                      content:
+                        text: This is a template placeholder text
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -350,6 +461,29 @@ paths:
                 required:
                   - offset
                   - more
+              examples:
+                Templates:
+                  value:
+                    templates:
+                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                        title: string
+                        description: string
+                        tags:
+                          - string
+                        modified: 0
+                        created: 0
+                        modifiedBy: string
+                        createdBy: string
+                        icon: 'http://example.com'
+                        resources:
+                          component: 'http://example.com'
+                          assest:
+                            - type: string
+                              url: 'http://example.com'
+                          options: {}
+                          content: {}
+                    offset: 0
+                    more: true
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -386,6 +520,35 @@ paths:
             application/json:
               schema:
                 $ref: ../model/media.v1.json
+              examples:
+                Image:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: string
+                    description: string
+                    tags:
+                      - string
+                    modified: 0
+                    created: 0
+                    modifiedBy: string
+                    createdBy: string
+                    assets:
+                      - type: string
+                        uri: 'http://example.com'
+                Video:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: string
+                    description: string
+                    tags:
+                      - string
+                    modified: 0
+                    created: 0
+                    modifiedBy: string
+                    createdBy: string
+                    assets:
+                      - type: string
+                        uri: 'http://example.com'
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -417,6 +580,28 @@ paths:
                 required:
                   - offset
                   - limit
+              examples:
+                Media:
+                  value:
+                    media:
+                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                        title: string
+                        description: string
+                        tags:
+                          - string
+                        modified: 0
+                        created: 0
+                        modifiedBy: string
+                        createdBy: string
+                        assets:
+                          - type: string
+                            uri: 'http://example.com'
+                    offset: 0
+                    limit: true
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
       operationId: get-v1-media
       parameters:
         - schema:
@@ -462,3 +647,4 @@ components:
               value:
                 message: Unknown internal application error
       headers: {}
+  securitySchemes: {}
