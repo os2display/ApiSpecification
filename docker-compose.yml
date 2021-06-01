@@ -27,7 +27,7 @@ services:
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${COMPOSE_DOMAIN}`)"
 
   imposter:
-    image: outofcoffee/imposter-openapi
+    image: outofcoffee/imposter-openapi:1.7.0
     networks:
       - app
     ports:

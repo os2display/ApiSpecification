@@ -19,6 +19,7 @@ paths:
         name: id
         in: path
         required: true
+        description: The UUID for the screen to get
     get:
       summary: Get screen information
       tags: []
