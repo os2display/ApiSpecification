@@ -20,7 +20,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Get screen information based on UUIDs
+      summary: Get screen information
       tags: []
       responses:
         '200':
@@ -30,16 +30,13 @@ paths:
               schema:
                 $ref: ../model/screen.v1.json
               examples:
-                Screen 2:
+                Screen 1:
                   value:
-                    id: 854f6ecb-6276-6854-bfeb-53cffffa6d1e
-                    title: Test screen 2
-                    description: This is an test screen 2 description
+                    id: 497f6eca-6276-1596-bfeb-53ceb43a6f54
+                    title: Test screen 1
+                    description: This is an test screen 1 description
                     regions:
-                      - name: top
-                        playlists:
-                          - 497f6eca-6276-4993-bfeb-53cbbbba6d05
-                      - name: buttom
+                      - name: center
                         playlists:
                           - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
@@ -50,13 +47,16 @@ paths:
                     created: 1622524267
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
-                Screen 1:
+                Screen 2:
                   value:
-                    id: 497f6eca-6276-1596-bfeb-53ceb43a6f54
-                    title: Test screen 1
-                    description: This is an test screen 1 description
+                    id: 854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                    title: Test screen 2
+                    description: This is an test screen 2 description
                     regions:
-                      - name: center
+                      - name: top
+                        playlists:
+                          - 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                      - name: buttom
                         playlists:
                           - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
@@ -156,7 +156,7 @@ paths:
           required: true
         - schema:
             type: integer
-            default: '0'
+            default: 0
           in: query
           name: offset
           required: true
@@ -169,7 +169,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get single playlist
       tags: []
       responses:
         '200':
@@ -207,10 +207,10 @@ paths:
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
-      description: Get playlist base on UUID
+      description: Get single playlist
   /v1/playlists:
     get:
-      summary: Your GET endpoint
+      summary: Get playlists based on offset
       tags: []
       responses:
         '200':
@@ -282,6 +282,7 @@ paths:
           in: query
           name: limit
           required: true
+      description: Get playlists based on offset
   '/v1/slide/{id}':
     parameters:
       - schema:
@@ -291,7 +292,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get slide
       tags: []
       responses:
         '200':
@@ -351,10 +352,10 @@ paths:
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-slide-id
-      description: ''
+      description: Get single slide based on UUID
   /v1/slides:
     get:
-      summary: Your GET endpoint
+      summary: Get slides
       tags: []
       responses:
         '200':
@@ -443,6 +444,7 @@ paths:
           in: query
           name: limit
           required: true
+      description: Get slides based on offset
   '/v1/template/{id}':
     parameters:
       - schema:
@@ -452,7 +454,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get template
       tags: []
       responses:
         '200':
@@ -489,9 +491,10 @@ paths:
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-template-id
+      description: Get template based on UUID
   /v1/templates:
     get:
-      summary: Your GET endpoint
+      summary: Get list of templates
       tags: []
       responses:
         '200':
@@ -559,6 +562,7 @@ paths:
           in: query
           name: limit
           required: true
+      description: Get templates base on offset
   '/v1/media/{id}':
     parameters:
       - schema:
@@ -568,7 +572,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Your GET endpoint
+      summary: Get media
       tags: []
       responses:
         '200':
@@ -613,9 +617,10 @@ paths:
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-media-id
+      description: Get media object
   /v1/media:
     get:
-      summary: Your GET endpoint
+      summary: Get list of media objects
       tags: []
       responses:
         '200':
@@ -688,6 +693,8 @@ paths:
             type: integer
           in: query
           name: limit
+          required: true
+      description: Get media objects base on offset
 components:
   schemas: {}
   parameters: {}
