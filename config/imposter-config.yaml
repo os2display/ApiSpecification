@@ -6,12 +6,42 @@ validation:
   request: true
 
 resources:
-  - path: /v1/screen/497f6eca-6276-4993-bfeb-53cbbbba6f08
+  - path: /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
     method: get
     response:
       exampleName: Screen 1
 
-  - path: /v1/screen/497f6eca-6276-4993-bfeb-53cbbbba6d05
+  - path: /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
     method: get
     response:
       exampleName: Screen 2
+
+  - path: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+    method: get
+    response:
+      exampleName: Playlist 1
+
+  - path: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10
+    method: get
+    response:
+      exampleName: Slide image
+
+  - path: /v1/slide/787f6ece-6276-5982-beeb-53cba4f36f12
+    method: get
+    response:
+      exampleName: Slide video
+
+  - path: /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+    method: get
+    response:
+      exampleName: Template 1
+
+  - path: /v1/media/497f6eca-4576-4883-cfeb-53cbffba6f08
+    method: get
+    response:
+      exampleName: Image
+
+  - path: /v1/media/597f6eca-4576-1454-cf15-52cb3eba6b85
+    method: get
+    response:
+      exampleName: Video

@@ -13,8 +13,8 @@ This is the UUID's used in the example content.
 
 ## Slide
 
-* Slide 1: a97f6ec4-5278-4993-bfeb-53cdedea6d10
-* Slide 2: 787f6ece-6276-5982-beeb-53cba4f36f12
+* Slide image: a97f6ec4-5278-4993-bfeb-53cdedea6d10
+* Slide video: 787f6ece-6276-5982-beeb-53cba4f36f12
 
 ## Playlist
 
