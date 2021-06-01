@@ -1,0 +1,17 @@
+---
+plugin: openapi
+specFile: /api/reference/OS2Display.v1.yaml
+
+validation:
+  request: true
+
+resources:
+  - path: /v1/screen/497f6eca-6276-4993-bfeb-53cbbbba6f08
+    method: get
+    response:
+      exampleName: Screen 1
+
+  - path: /v1/screen/497f6eca-6276-4993-bfeb-53cbbbba6d05
+    method: get
+    response:
+      exampleName: Screen 2

@@ -9,7 +9,7 @@ info:
     name: MIT
   description: API displaying content
 servers:
-  - url: 'http://localhost:3000'
+  - url: 'http://os2display-api.local.itkdev.dk'
 paths:
   '/v1/screen/{id}':
     parameters:
@@ -30,25 +30,7 @@ paths:
               schema:
                 $ref: ../model/screen.v1.json
               examples:
-                '1':
-                  value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: Test screen 1
-                    description: This is an test screen 1 description
-                    regions:
-                      - name: center
-                        playlists:
-                          - 497f6eca-6276-4993-bfeb-53cbbbba6d10
-                          - 497f6eca-6276-4993-bfeb-53cbaaba6f08
-                    tags:
-                      - itk
-                      - screens
-                      - test
-                    modified: 1622535248
-                    created: 1622524267
-                    modifiedBy: Jens Jensen
-                    createdBy: Ole Olesen
-                '2':
+                Screen 2:
                   value:
                     id: 497f6eca-6276-4993-bfeb-53cbbbba6d05
                     title: Test screen 2
@@ -61,6 +43,24 @@ paths:
                         playlists:
                           - 497f6eca-6276-4993-bfeb-53cbbbba6d11
                           - 497f6eca-6276-4993-bfeb-53cbaaba6f12
+                    tags:
+                      - itk
+                      - screens
+                      - test
+                    modified: 1622535248
+                    created: 1622524267
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
+                Screen 1:
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: Test screen 1
+                    description: This is an test screen 1 description
+                    regions:
+                      - name: center
+                        playlists:
+                          - 497f6eca-6276-4993-bfeb-53cbbbba6d10
+                          - 497f6eca-6276-4993-bfeb-53cbaaba6f08
                     tags:
                       - itk
                       - screens

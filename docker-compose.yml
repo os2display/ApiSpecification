@@ -15,7 +15,7 @@ services:
       - app
       - frontend
     depends_on:
-      - prims
+      - imposter
     ports:
       - '80'
     volumes:
@@ -26,13 +26,13 @@ services:
       - "traefik.docker.network=frontend"
       - "traefik.http.routers.${COMPOSE_PROJECT_NAME}.rule=Host(`${COMPOSE_DOMAIN}`)"
 
-  prims:
-    image: stoplight/prism:4
+  imposter:
+    image: outofcoffee/imposter-openapi
     networks:
       - app
     ports:
-      - "4010"
+      - '8080'
     volumes:
-      - ${PWD}:/api
-    command:
-      mock -p 4010 --host 0.0.0.0 /api/reference/OS2Display.v1.yaml
+      - ${PWD}/config:/opt/imposter/config:ro
+      - ${PWD}:/opt/imposter/config/api:ro
+
