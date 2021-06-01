@@ -32,7 +32,7 @@ paths:
               examples:
                 Screen 2:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                    id: 854f6ecb-6276-6854-bfeb-53cffffa6d1e
                     title: Test screen 2
                     description: This is an test screen 2 description
                     regions:
@@ -41,8 +41,7 @@ paths:
                           - 497f6eca-6276-4993-bfeb-53cbbbba6d05
                       - name: buttom
                         playlists:
-                          - 497f6eca-6276-4993-bfeb-53cbbbba6d11
-                          - 497f6eca-6276-4993-bfeb-53cbaaba6f12
+                          - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
                       - itk
                       - screens
@@ -53,14 +52,13 @@ paths:
                     createdBy: Ole Olesen
                 Screen 1:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    id: 497f6eca-6276-1596-bfeb-53ceb43a6f54
                     title: Test screen 1
                     description: This is an test screen 1 description
                     regions:
                       - name: center
                         playlists:
-                          - 497f6eca-6276-4993-bfeb-53cbbbba6d10
-                          - 497f6eca-6276-4993-bfeb-53cbaaba6f08
+                          - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
                       - itk
                       - screens
@@ -181,24 +179,29 @@ paths:
               schema:
                 $ref: ../model/playlist.v1.json
               examples:
-                example-1:
+                Playlist 1:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: string
-                    description: string
+                    id: 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                    title: The first playlist
+                    description: This is an playlist wiht image and video
                     tags:
-                      - string
-                    modified: 0
-                    created: 0
-                    modifiedBy: string
-                    createdBy: string
+                      - itk
+                      - video
+                      - mock
+                    modified: 1622557486
+                    created: 1622557262
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
                     slides:
-                      - id: string
-                        weight: 0
-                        duration: 0
+                      - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                        weight: 5
+                        duration: 10
+                      - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                        weight: 10
+                        duration: 125
                     published:
-                      from: 0
-                      to: 0
+                      from: 1622557262
+                      to: 1622588254
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -232,6 +235,33 @@ paths:
                   - playlists
                   - offset
                   - more
+              examples:
+                Playlists:
+                  value:
+                    playlists:
+                      - id: 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                        title: The first playlist
+                        description: This is an playlist wiht image and video
+                        tags:
+                          - itk
+                          - video
+                          - mock
+                        modified: 1622557486
+                        created: 1622557262
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                        slides:
+                          - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                            weight: 5
+                            duration: 10
+                          - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                            weight: 10
+                            duration: 125
+                        published:
+                          from: 1622557262
+                          to: 1622588254
+                    offset: 0
+                    more: true
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -271,10 +301,10 @@ paths:
               schema:
                 $ref: ../model/slide.v1.json
               examples:
-                Slide 1:
+                Slide image:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: Slide 1
+                    id: a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                    title: Image Slide
                     description: This is the first slide named one
                     tags:
                       - itk
@@ -285,7 +315,7 @@ paths:
                     modifiedBy: Ole Olesen
                     createdBy: Jens Jensen
                     template:
-                      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: false
                         - icon: true
@@ -293,12 +323,12 @@ paths:
                     duration: 45
                     content:
                       text: This is slide content
-                      media: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      media: 497f6eca-4576-4883-cfeb-53cbffba6f08
                     published: 1
-                Slide 2:
+                Slide video:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: Slide 2
+                    id: 787f6ece-6276-5982-beeb-53cba4f36f12
+                    title: Video Slide
                     description: This is the next slide named two
                     tags:
                       - itk
@@ -309,13 +339,12 @@ paths:
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                     template:
-                      id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: true
                     duration: 90
                     content:
-                      text: This is slide content text
-                      media: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                      media: 597f6eca-4576-1454-cf15-52cb3eba6b85
                     published: 1
         '404':
           $ref: '#/components/responses/404'
@@ -353,24 +382,49 @@ paths:
                 Slides:
                   value:
                     slides:
-                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                        title: string
-                        description: string
+                      - id: a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                        title: Image Slide
+                        description: This is the first slide named one
                         tags:
-                          - string
-                        modified: 0
-                        created: 0
-                        modifiedBy: string
-                        createdBy: string
+                          - itk
+                          - mock
+                          - example
+                        modified: 1622555123
+                        created: 1622554031
+                        modifiedBy: Ole Olesen
+                        createdBy: Jens Jensen
                         template:
-                          id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                          id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                           options:
-                            - {}
-                        duration: 0
-                        content: {}
-                        published: 0
+                            - fade: false
+                            - icon: true
+                              url: 'http://test.local.itkdev.dk/icon.png'
+                        duration: 45
+                        content:
+                          text: This is slide content
+                          media: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                        published: 1
+                      - id: 787f6ece-6276-5982-beeb-53cba4f36f12
+                        title: Video Slide
+                        description: This is the next slide named two
+                        tags:
+                          - itk
+                          - mock
+                          - example
+                        modified: 1622555475
+                        created: 1622553404
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                        template:
+                          id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                          options:
+                            - fade: true
+                        duration: 90
+                        content:
+                          media: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                        published: 1
                     offset: 0
-                    more: true
+                    more: false
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -410,7 +464,7 @@ paths:
               examples:
                 Template 1:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                     title: Template 1
                     description: This is a image example template
                     tags:
@@ -465,23 +519,26 @@ paths:
                 Templates:
                   value:
                     templates:
-                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                        title: string
-                        description: string
+                      - id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                        title: Template 1
+                        description: This is a image example template
                         tags:
-                          - string
-                        modified: 0
-                        created: 0
-                        modifiedBy: string
-                        createdBy: string
-                        icon: 'http://example.com'
+                          - itk
+                          - mock
+                        modified: 1622555659
+                        created: 1622552649
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olensen
+                        icon: 'http://templates.itkdev.dk/image/icon.png'
                         resources:
-                          component: 'http://example.com'
+                          component: 'http://templates.itkdev.dk/image/image.js'
                           assest:
-                            - type: string
-                              url: 'http://example.com'
-                          options: {}
-                          content: {}
+                            - type: css
+                              url: 'http://templates.itkdev.dk/image/image.css'
+                          options:
+                            fade: true
+                          content:
+                            text: This is a template placeholder text
                     offset: 0
                     more: true
         '404':
@@ -523,32 +580,34 @@ paths:
               examples:
                 Image:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: string
-                    description: string
+                    id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                    title: Sunset image
+                    description: An image of a sunset
                     tags:
-                      - string
-                    modified: 0
-                    created: 0
-                    modifiedBy: string
-                    createdBy: string
+                      - itk
+                      - example
+                    modified: 1622556728
+                    created: 1622550342
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
                     assets:
-                      - type: string
-                        uri: 'http://example.com'
+                      - type: image/png
+                        uri: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Sunset%2C_beach%2C_Northern_Territory_.png'
                 Video:
                   value:
-                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                    title: string
-                    description: string
+                    id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                    title: Video
+                    description: The bunny example movie
                     tags:
-                      - string
-                    modified: 0
-                    created: 0
-                    modifiedBy: string
-                    createdBy: string
+                      - itk
+                      - mock
+                    modified: 1622554784
+                    created: 1622556728
+                    modifiedBy: Ole Olesen
+                    createdBy: Jens Jensen
                     assets:
-                      - type: string
-                        uri: 'http://example.com'
+                      - type: video/mp4
+                        uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -584,18 +643,32 @@ paths:
                 Media:
                   value:
                     media:
-                      - id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
-                        title: string
-                        description: string
+                      - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                        title: Sunset image
+                        description: An image of a sunset
                         tags:
-                          - string
-                        modified: 0
-                        created: 0
-                        modifiedBy: string
-                        createdBy: string
+                          - itk
+                          - example
+                        modified: 1622556728
+                        created: 1622550342
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
                         assets:
-                          - type: string
-                            uri: 'http://example.com'
+                          - type: image/png
+                            uri: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Sunset%2C_beach%2C_Northern_Territory_.png'
+                      - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                        title: Video
+                        description: The bunny example movie
+                        tags:
+                          - itk
+                          - mock
+                        modified: 1622554784
+                        created: 1622556728
+                        modifiedBy: Ole Olesen
+                        createdBy: Jens Jensen
+                        assets:
+                          - type: video/mp4
+                            uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
                     offset: 0
                     limit: true
         '404':
