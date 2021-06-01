@@ -1,0 +1,85 @@
+{
+  "title": "Screen",
+  "type": "object",
+  "x-examples": {
+    "example-1": {
+      "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+      "title": "string",
+      "description": "string",
+      "regions": [
+        {
+          "name": "string",
+          "channels": [
+            "string"
+          ]
+        }
+      ],
+      "tags": [
+        "string"
+      ],
+      "modified": 0,
+      "created": 0,
+      "modifiedBy": "string",
+      "createdBy": "string"
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "channels": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified": {
+      "format": "time",
+      "type": "integer"
+    },
+    "created": {
+      "type": "integer"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "regions",
+    "tags",
+    "modified",
+    "created",
+    "modifiedBy",
+    "createdBy"
+  ]
+}

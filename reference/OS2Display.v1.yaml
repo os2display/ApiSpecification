@@ -1,0 +1,190 @@
+openapi: 3.0.0
+info:
+  title: OS2Display
+  version: '1.0'
+  contact:
+    name: ITKDev
+    email: itk@mkb.aarhus.dk
+  license:
+    name: MIT
+  description: API displaying content
+servers:
+  - url: 'http://localhost:3000'
+paths:
+  '/v1/screen/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get User Info by User ID
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/screen.v1.json
+              examples:
+                '1':
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6f08
+                    title: Test screen 1
+                    description: This is an test screen 1 description
+                    regions:
+                      - name: center
+                        channels:
+                          - 497f6eca-6276-4993-bfeb-53cbbbba6d10
+                          - 497f6eca-6276-4993-bfeb-53cbaaba6f08
+                    tags:
+                      - itk
+                      - screens
+                      - test
+                    modified: 1622535248
+                    created: 1622524267
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
+                '2':
+                  value:
+                    id: 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                    title: Test screen 2
+                    description: This is an test screen 2 description
+                    regions:
+                      - name: top
+                        channels:
+                          - 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                      - name: buttom
+                        channels:
+                          - 497f6eca-6276-4993-bfeb-53cbbbba6d11
+                          - 497f6eca-6276-4993-bfeb-53cbaaba6f12
+                    tags:
+                      - itk
+                      - screens
+                      - test
+                    modified: 1622535248
+                    created: 1622524267
+                    modifiedBy: Jens Jensen
+                    createdBy: Ole Olesen
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-screen
+      description: Retrieve basic screen information and regions configuraiton
+      parameters: []
+  /v1/screens:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  screens:
+                    type: array
+                    items:
+                      $ref: ../model/screen.v1.json
+                  page:
+                    type: integer
+                    format: int32
+                    default: 0
+                    minimum: 0
+                    readOnly: true
+                  more:
+                    type: boolean
+                    default: false
+              examples:
+                screens:
+                  value:
+                    screens:
+                      - id: 497f6eca-6276-4993-bfeb-53cbffba6f58
+                        title: Test screen 1
+                        description: This is an test screen 1 description
+                        regions:
+                          - name: center
+                            channels:
+                              - 497f6eca-6276-4993-bfeb-53cbbbba6d10
+                              - 497f6eca-6276-4993-bfeb-53cbaaba6f08
+                        tags:
+                          - itk
+                          - screens
+                          - test
+                        modified: 1622535248
+                        created: 1622524267
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                      - id: 497f6eca-6276-4993-bfeb-53cbcbba6d12
+                        title: Test screen 2
+                        description: This is an test screen 2 description
+                        regions:
+                          - name: top
+                            channels:
+                              - 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                          - name: buttom
+                            channels:
+                              - 497f6eca-6276-4993-bfeb-53cbbbba6d11
+                              - 497f6eca-6276-4993-bfeb-53cbaaba6f12
+                        tags:
+                          - itk
+                          - screens
+                          - test
+                        modified: 1622535248
+                        created: 1622524267
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                    page: 0
+                    more: false
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-screens
+      description: Get screeen with pagination
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+          in: query
+          name: page
+          required: true
+components:
+  schemas: {}
+  parameters: {}
+  examples: {}
+  responses:
+    '404':
+      description: Not found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          examples:
+            '1':
+              value:
+                message: Not found
+    '500':
+      description: Internal error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          examples:
+            '1':
+              value:
+                message: Unknown internal application error
+      headers: {}

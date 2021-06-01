@@ -1,0 +1,92 @@
+{
+  "title": "Template",
+  "type": "object",
+  "x-examples": {},
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified": {
+      "format": "time",
+      "type": "integer"
+    },
+    "created": {
+      "type": "integer"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "icon": {
+      "type": "string",
+      "format": "uri"
+    },
+    "resources": {
+      "type": "object",
+      "required": [
+        "component",
+        "assest",
+        "options",
+        "content"
+      ],
+      "properties": {
+        "component": {
+          "type": "string",
+          "format": "uri"
+        },
+        "assest": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              }
+            },
+            "required": [
+              "type",
+              "url"
+            ]
+          }
+        },
+        "options": {
+          "type": "object"
+        },
+        "content": {
+          "type": "object"
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "tags",
+    "modified",
+    "created",
+    "modifiedBy",
+    "createdBy",
+    "icon",
+    "resources"
+  ]
+}

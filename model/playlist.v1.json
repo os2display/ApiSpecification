@@ -1,0 +1,86 @@
+{
+  "title": "Playlist",
+  "type": "object",
+  "x-examples": {},
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified": {
+      "format": "time",
+      "type": "integer"
+    },
+    "created": {
+      "type": "integer"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "slides": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uri-reference"
+          },
+          "weight": {
+            "type": "integer"
+          },
+          "duration": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "weight",
+          "duration"
+        ]
+      }
+    },
+    "published": {
+      "type": "object",
+      "required": [
+        "from",
+        "to"
+      ],
+      "properties": {
+        "from": {
+          "type": "integer"
+        },
+        "to": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "tags",
+    "modified",
+    "created",
+    "modifiedBy",
+    "createdBy",
+    "slides",
+    "published"
+  ]
+}

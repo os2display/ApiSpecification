@@ -1,0 +1,99 @@
+{
+  "title": "Slide v1",
+  "type": "object",
+  "x-examples": {
+    "example-1": {
+      "id": "497f6eca-6276-4993-bfeb-53cbbbba6f08",
+      "title": "string",
+      "description": "string",
+      "tags": [
+        "string"
+      ],
+      "modified": 0,
+      "created": 0,
+      "modifiedBy": "string",
+      "createdBy": "string",
+      "template": {
+        "id": "string",
+        "options": [
+          null
+        ]
+      }
+    }
+  },
+  "properties": {
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "modified": {
+      "format": "time",
+      "type": "integer"
+    },
+    "created": {
+      "type": "integer"
+    },
+    "modifiedBy": {
+      "type": "string"
+    },
+    "createdBy": {
+      "type": "string"
+    },
+    "template": {
+      "type": "object",
+      "required": [
+        "id",
+        "options"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uri-reference"
+        },
+        "options": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "duration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "content": {
+      "type": "object"
+    },
+    "published": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "required": [
+    "id",
+    "title",
+    "description",
+    "tags",
+    "modified",
+    "created",
+    "modifiedBy",
+    "createdBy",
+    "template",
+    "duration",
+    "content",
+    "published"
+  ]
+}
