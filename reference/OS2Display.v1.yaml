@@ -20,7 +20,7 @@ paths:
         in: path
         required: true
     get:
-      summary: Get User Info by User ID
+      summary: Get screen information based on UUIDs
       tags: []
       responses:
         '200':
@@ -78,7 +78,7 @@ paths:
       parameters: []
   /v1/screens:
     get:
-      summary: Your GET endpoint
+      summary: Get screens
       tags: []
       responses:
         '200':
@@ -92,7 +92,7 @@ paths:
                     type: array
                     items:
                       $ref: ../model/screen.v1.json
-                  page:
+                  offset:
                     type: integer
                     format: int32
                     default: 0
@@ -140,7 +140,7 @@ paths:
                         created: 1622524267
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                    page: 0
+                    offset: 0
                     more: false
         '404':
           $ref: '#/components/responses/404'
@@ -154,8 +154,282 @@ paths:
             format: int32
             minimum: 0
           in: query
-          name: page
+          name: limit
           required: true
+        - schema:
+            type: integer
+            default: '0'
+          in: query
+          name: offset
+          required: true
+  '/v1/playlist/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/playlist.v1.json
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-playlist-id
+      description: Get playlist base on UUID
+  /v1/playlists:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  playlists:
+                    type: array
+                    items:
+                      $ref: ../model/playlist.v1.json
+                  offset:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    readOnly: true
+                  more:
+                    type: boolean
+                required:
+                  - playlists
+                  - offset
+                  - more
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-playlists
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            format: int32
+          in: query
+          name: offset
+          required: true
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+          in: query
+          name: limit
+          required: true
+  '/v1/slide/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/slide.v1.json
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-slide-id
+      description: ''
+  /v1/slides:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slides:
+                    type: array
+                    items:
+                      $ref: ../model/slide.v1.json
+                  offset:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    readOnly: true
+                  more:
+                    type: boolean
+                required:
+                  - offset
+                  - more
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-slides
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          required: true
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: limit
+          required: true
+  '/v1/template/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/template.v1.json
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-template-id
+  /v1/templates:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  templates:
+                    type: array
+                    items:
+                      $ref: ../model/template.v1.json
+                  offset:
+                    type: integer
+                    minimum: 0
+                    format: int32
+                    readOnly: true
+                  more:
+                    type: boolean
+                required:
+                  - offset
+                  - more
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-templates
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: offset
+          required: true
+        - schema:
+            type: integer
+            minimum: 0
+          in: query
+          name: limit
+          required: true
+  '/v1/media/{id}':
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/media.v1.json
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-media-id
+  /v1/media:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  media:
+                    type: array
+                    items:
+                      $ref: ../model/media.v1.json
+                  offset:
+                    type: integer
+                    format: int32
+                    minimum: 0
+                    readOnly: true
+                  limit:
+                    type: boolean
+                required:
+                  - offset
+                  - limit
+      operationId: get-v1-media
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+          in: query
+          name: offset
+          required: true
+        - schema:
+            type: integer
+          in: query
+          name: limit
 components:
   schemas: {}
   parameters: {}
