@@ -42,7 +42,7 @@
           "name": {
             "type": "string"
           },
-          "channels": {
+          "playlists": {
             "type": "array",
             "items": {
               "type": "string"

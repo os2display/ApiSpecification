@@ -37,7 +37,7 @@ paths:
                     description: This is an test screen 1 description
                     regions:
                       - name: center
-                        channels:
+                        playlists:
                           - 497f6eca-6276-4993-bfeb-53cbbbba6d10
                           - 497f6eca-6276-4993-bfeb-53cbaaba6f08
                     tags:
@@ -55,10 +55,10 @@ paths:
                     description: This is an test screen 2 description
                     regions:
                       - name: top
-                        channels:
+                        playlists:
                           - 497f6eca-6276-4993-bfeb-53cbbbba6d05
                       - name: buttom
-                        channels:
+                        playlists:
                           - 497f6eca-6276-4993-bfeb-53cbbbba6d11
                           - 497f6eca-6276-4993-bfeb-53cbaaba6f12
                     tags:
