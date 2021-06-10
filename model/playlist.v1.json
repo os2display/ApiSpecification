@@ -3,9 +3,8 @@
   "type": "object",
   "x-examples": {},
   "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid"
+    "@id": {
+      "type": "string"
     },
     "title": {
       "type": "string"
@@ -37,9 +36,8 @@
       "items": {
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string",
-            "format": "uri-reference"
+          "@id": {
+            "type": "string"
           },
           "weight": {
             "type": "integer"
@@ -49,7 +47,7 @@
           }
         },
         "required": [
-          "id",
+          "@id",
           "weight",
           "duration"
         ]
@@ -72,7 +70,7 @@
     }
   },
   "required": [
-    "id",
+    "@id",
     "title",
     "description",
     "tags",

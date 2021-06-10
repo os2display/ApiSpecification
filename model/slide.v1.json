@@ -2,10 +2,10 @@
   "title": "Slide v1",
   "type": "object",
   "x-examples": {},
+  "description": "",
   "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid"
+    "@id": {
+      "type": "string"
     },
     "title": {
       "type": "string"
@@ -35,13 +35,12 @@
     "template": {
       "type": "object",
       "required": [
-        "id",
+        "@id",
         "options"
       ],
       "properties": {
-        "id": {
-          "type": "string",
-          "format": "uuid"
+        "@id": {
+          "type": "string"
         },
         "options": {
           "type": "array",
@@ -64,7 +63,7 @@
     }
   },
   "required": [
-    "id",
+    "@id",
     "title",
     "description",
     "tags",

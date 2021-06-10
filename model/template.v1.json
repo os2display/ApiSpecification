@@ -3,9 +3,8 @@
   "type": "object",
   "x-examples": {},
   "properties": {
-    "id": {
-      "type": "string",
-      "format": "uuid"
+    "@id": {
+      "type": "string"
     },
     "title": {
       "type": "string"
@@ -78,7 +77,7 @@
     }
   },
   "required": [
-    "id",
+    "@id",
     "title",
     "description",
     "tags",
