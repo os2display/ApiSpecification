@@ -33,13 +33,13 @@ paths:
               examples:
                 Screen 1:
                   value:
-                    id: 497f6eca-6276-1596-bfeb-53ceb43a6f54
+                    '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
                     title: Test screen 1
                     description: This is an test screen 1 description
                     regions:
                       - name: center
                         playlists:
-                          - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
                       - itk
                       - screens
@@ -50,16 +50,16 @@ paths:
                     createdBy: Ole Olesen
                 Screen 2:
                   value:
-                    id: 854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                    '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                     title: Test screen 2
                     description: This is an test screen 2 description
                     regions:
                       - name: top
                         playlists:
-                          - 497f6eca-6276-4993-bfeb-53cbbbba6d05
+                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                       - name: buttom
                         playlists:
-                          - 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     tags:
                       - itk
                       - screens
@@ -87,24 +87,51 @@ paths:
               schema:
                 type: object
                 properties:
-                  screens:
+                  '@id':
+                    type: string
+                    default: /v1/screens
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
                     type: array
                     items:
                       $ref: ../model/screen.v1.json
-                  offset:
+                  'hydra:totalItems':
                     type: integer
-                    format: int32
-                    default: 0
-                    minimum: 0
-                    readOnly: true
-                  more:
-                    type: boolean
-                    default: false
+                  'hydra:view':
+                    type: object
+                    required:
+                      - '@id'
+                      - '@type'
+                      - 'hydra:first'
+                      - 'hydra:last'
+                      - 'hydra:next'
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+                required:
+                  - '@id'
+                  - '@type'
+                  - 'hydra:member'
+                  - 'hydra:totalItems'
+                  - 'hydra:view'
               examples:
-                screens:
+                Screens:
                   value:
-                    screens:
-                      - id: 497f6eca-6276-4993-bfeb-53cbffba6f58
+                    '@id': /v1/screens
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@id': /v1/screen/497f6eca-6276-4993-bfeb-53cbffba6f58
                         title: Test screen 1
                         description: This is an test screen 1 description
                         regions:
@@ -120,7 +147,7 @@ paths:
                         created: 1622524267
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                      - id: 497f6eca-6276-4993-bfeb-53cbcbba6d12
+                      - '@id': /v1/screen/497f6eca-6276-4993-bfeb-53cbcbba6d12
                         title: Test screen 2
                         description: This is an test screen 2 description
                         regions:
@@ -139,8 +166,13 @@ paths:
                         created: 1622524267
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                    offset: 0
-                    more: false
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': /v1/screens?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/screens?page=1
+                      'hydra:last': /v1/screens?page=1
+                      'hydra:next': /v1/screens?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -153,13 +185,7 @@ paths:
             format: int32
             minimum: 0
           in: query
-          name: limit
-          required: true
-        - schema:
-            type: integer
-            default: 0
-          in: query
-          name: offset
+          name: page
           required: true
   '/v1/playlist/{id}':
     parameters:
@@ -182,7 +208,7 @@ paths:
               examples:
                 Playlist 1:
                   value:
-                    id: 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                    '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     title: The first playlist
                     description: This is an playlist wiht image and video
                     tags:
@@ -194,10 +220,10 @@ paths:
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                     slides:
-                      - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                      - '@id': /v1/slide/497f6eca-4576-4883-cfeb-53cbffba6f08
                         weight: 5
                         duration: 10
-                      - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                      - '@id': /v1/slide/597f6eca-4576-1454-cf15-52cb3eba6b85
                         weight: 10
                         duration: 125
                     published:
@@ -221,26 +247,39 @@ paths:
               schema:
                 type: object
                 properties:
-                  playlists:
+                  '@id':
+                    type: string
+                    default: /v1/playlists
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
                     type: array
                     items:
                       $ref: ../model/playlist.v1.json
-                  offset:
+                  'hydra:totalItems':
                     type: integer
-                    format: int32
-                    minimum: 0
-                    readOnly: true
-                  more:
-                    type: boolean
-                required:
-                  - playlists
-                  - offset
-                  - more
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
               examples:
                 Playlists:
                   value:
-                    playlists:
-                      - id: 29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                    '@id': /v1/playlists
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                         title: The first playlist
                         description: This is an playlist wiht image and video
                         tags:
@@ -252,17 +291,22 @@ paths:
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                         slides:
-                          - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                          - '@id': /v1/slide/497f6eca-4576-4883-cfeb-53cbffba6f08
                             weight: 5
                             duration: 10
-                          - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                          - '@id': /v1/slide/597f6eca-4576-1454-cf15-52cb3eba6b85
                             weight: 10
                             duration: 125
                         published:
                           from: 1622557262
                           to: 1622588254
-                    offset: 0
-                    more: true
+                    'hydra:totalItems': 1
+                    'hydra:view':
+                      '@id': /v1/playlists?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/playlists?page=1
+                      'hydra:last': /v1/playlists?page=1
+                      'hydra:next': /v1/playlists?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -274,14 +318,7 @@ paths:
             minimum: 0
             format: int32
           in: query
-          name: offset
-          required: true
-        - schema:
-            type: integer
-            format: int32
-            minimum: 0
-          in: query
-          name: limit
+          name: page
           required: true
       description: Get playlists based on offset
   '/v1/slide/{id}':
@@ -305,7 +342,7 @@ paths:
               examples:
                 Slide image:
                   value:
-                    id: a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                    '@id': /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10
                     title: Image Slide
                     description: This is the first slide named one
                     tags:
@@ -317,7 +354,7 @@ paths:
                     modifiedBy: Ole Olesen
                     createdBy: Jens Jensen
                     template:
-                      id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                      '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: false
                         - icon: true
@@ -329,7 +366,7 @@ paths:
                     published: 1
                 Slide video:
                   value:
-                    id: 787f6ece-6276-5982-beeb-53cba4f36f12
+                    '@id': /v1/slide/787f6ece-6276-5982-beeb-53cba4f36f12
                     title: Video Slide
                     description: This is the next slide named two
                     tags:
@@ -341,7 +378,7 @@ paths:
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                     template:
-                      id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                      '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: true
                     duration: 90
@@ -366,25 +403,39 @@ paths:
               schema:
                 type: object
                 properties:
-                  slides:
+                  '@id':
+                    type: string
+                    default: /v1/slides
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
                     type: array
                     items:
                       $ref: ../model/slide.v1.json
-                  offset:
+                  'hydra:totalItems':
                     type: integer
-                    format: int32
-                    minimum: 0
-                    readOnly: true
-                  more:
-                    type: boolean
-                required:
-                  - offset
-                  - more
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
               examples:
                 Slides:
                   value:
-                    slides:
-                      - id: a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                    '@id': /v1/slides
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@id': /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10
                         title: Image Slide
                         description: This is the first slide named one
                         tags:
@@ -396,7 +447,7 @@ paths:
                         modifiedBy: Ole Olesen
                         createdBy: Jens Jensen
                         template:
-                          id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                          '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                           options:
                             - fade: false
                             - icon: true
@@ -406,7 +457,7 @@ paths:
                           text: This is slide content
                           media: 497f6eca-4576-4883-cfeb-53cbffba6f08
                         published: 1
-                      - id: 787f6ece-6276-5982-beeb-53cba4f36f12
+                      - '@id': /v1/slide/787f6ece-6276-5982-beeb-53cba4f36f12
                         title: Video Slide
                         description: This is the next slide named two
                         tags:
@@ -418,15 +469,20 @@ paths:
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                         template:
-                          id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                          '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                           options:
                             - fade: true
                         duration: 90
                         content:
                           media: 597f6eca-4576-1454-cf15-52cb3eba6b85
                         published: 1
-                    offset: 0
-                    more: false
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': /v1/slides?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/slides?page=1
+                      'hydra:last': /v1/slides?page=1
+                      'hydra:next': /v1/slides?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -437,13 +493,7 @@ paths:
             type: integer
             minimum: 0
           in: query
-          name: offset
-          required: true
-        - schema:
-            type: integer
-            minimum: 0
-          in: query
-          name: limit
+          name: page
           required: true
       description: Get slides based on offset
   '/v1/template/{id}':
@@ -467,7 +517,7 @@ paths:
               examples:
                 Template 1:
                   value:
-                    id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                    '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                     title: Template 1
                     description: This is a image example template
                     tags:
@@ -505,25 +555,38 @@ paths:
               schema:
                 type: object
                 properties:
-                  templates:
+                  '@id':
+                    type: string
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
                     type: array
                     items:
                       $ref: ../model/template.v1.json
-                  offset:
+                  'hydra:totalItems':
                     type: integer
-                    minimum: 0
-                    format: int32
-                    readOnly: true
-                  more:
-                    type: boolean
-                required:
-                  - offset
-                  - more
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
               examples:
                 Templates:
                   value:
-                    templates:
-                      - id: 457d6ecb-6378-4299-bfcb-53cbaaaa6f65
+                    '@id': /v1/templates
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                         title: Template 1
                         description: This is a image example template
                         tags:
@@ -543,8 +606,13 @@ paths:
                             fade: true
                           content:
                             text: This is a template placeholder text
-                    offset: 0
-                    more: true
+                    'hydra:totalItems': 1
+                    'hydra:view':
+                      '@id': /v1/templates?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/templates?page=1
+                      'hydra:last': /v1/templates?page=1
+                      'hydra:next': /v1/templates?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -585,7 +653,7 @@ paths:
               examples:
                 Image:
                   value:
-                    id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                    '@id': /v1/media/497f6eca-4576-4883-cfeb-53cbffba6f08
                     title: Sunset image
                     description: An image of a sunset
                     tags:
@@ -600,7 +668,7 @@ paths:
                         uri: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Sunset%2C_beach%2C_Northern_Territory_.png'
                 Video:
                   value:
-                    id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                    '@id': /v1/media/597f6eca-4576-1454-cf15-52cb3eba6b85
                     title: Video
                     description: The bunny example movie
                     tags:
@@ -631,25 +699,38 @@ paths:
               schema:
                 type: object
                 properties:
-                  media:
+                  '@id':
+                    type: string
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
                     type: array
                     items:
                       $ref: ../model/media.v1.json
-                  offset:
+                  'hydra:totalItems':
                     type: integer
-                    format: int32
-                    minimum: 0
-                    readOnly: true
-                  limit:
-                    type: boolean
-                required:
-                  - offset
-                  - limit
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
               examples:
                 Media:
                   value:
-                    media:
-                      - id: 497f6eca-4576-4883-cfeb-53cbffba6f08
+                    '@id': /v1/media
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@id': /v1/media/497f6eca-4576-4883-cfeb-53cbffba6f08
                         title: Sunset image
                         description: An image of a sunset
                         tags:
@@ -662,7 +743,7 @@ paths:
                         assets:
                           - type: image/png
                             uri: 'https://upload.wikimedia.org/wikipedia/commons/0/00/Sunset%2C_beach%2C_Northern_Territory_.png'
-                      - id: 597f6eca-4576-1454-cf15-52cb3eba6b85
+                      - '@id': /v1/media/597f6eca-4576-1454-cf15-52cb3eba6b85
                         title: Video
                         description: The bunny example movie
                         tags:
@@ -675,8 +756,13 @@ paths:
                         assets:
                           - type: video/mp4
                             uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
-                    offset: 0
-                    limit: true
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': /v1/media?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/media?page=1
+                      'hydra:last': /v1/media?page=1
+                      'hydra:next': /v1/media?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
