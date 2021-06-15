@@ -4,6 +4,9 @@
   "x-examples": {},
   "description": "",
   "properties": {
+    "@context": {
+      "type": "string"
+    },
     "@id": {
       "type": "string"
     },
@@ -75,5 +78,6 @@
     "duration",
     "content",
     "published"
-  ]
+  ],
+  "examples": []
 }

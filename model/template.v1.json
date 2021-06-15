@@ -3,6 +3,9 @@
   "type": "object",
   "x-examples": {},
   "properties": {
+    "@context": {
+      "type": "string"
+    },
     "@id": {
       "type": "string"
     },
@@ -48,7 +51,7 @@
           "type": "string",
           "format": "uri"
         },
-        "assest": {
+        "assets": {
           "type": "array",
           "items": {
             "type": "object",

@@ -3,6 +3,9 @@
   "type": "object",
   "x-examples": {},
   "properties": {
+    "@context": {
+      "type": "string"
+    },
     "@id": {
       "type": "string"
     },
