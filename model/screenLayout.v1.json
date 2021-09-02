@@ -1,0 +1,37 @@
+{
+  "title": "screenLayout.v1",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "grid": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "string"
+        }
+      }
+    },
+    "regions": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "gridArea": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

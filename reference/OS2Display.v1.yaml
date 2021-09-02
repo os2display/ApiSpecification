@@ -36,10 +36,9 @@ paths:
                     '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
                     title: Test screen 1
                     description: This is an test screen 1 description
+                    size: 50
                     regions:
-                      - name: center
-                        playlists:
-                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                      - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
                     tags:
                       - itk
                       - screens
@@ -53,13 +52,10 @@ paths:
                     '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                     title: Test screen 2
                     description: This is an test screen 2 description
+                    size: 75
                     regions:
-                      - name: top
-                        playlists:
-                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
-                      - name: buttom
-                        playlists:
-                          - /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
+                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
                     tags:
                       - itk
                       - screens
@@ -131,14 +127,12 @@ paths:
                     '@id': /v1/screens
                     '@type': 'hydra:Collection'
                     'hydra:member':
-                      - '@id': /v1/screen/497f6eca-6276-4993-bfeb-53cbffba6f58
+                      - '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
                         title: Test screen 1
                         description: This is an test screen 1 description
+                        size: 50
                         regions:
-                          - name: center
-                            channels:
-                              - 497f6eca-6276-4993-bfeb-53cbbbba6d10
-                              - 497f6eca-6276-4993-bfeb-53cbaaba6f08
+                          - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
                         tags:
                           - itk
                           - screens
@@ -147,17 +141,13 @@ paths:
                         created: 1622524267
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                      - '@id': /v1/screen/497f6eca-6276-4993-bfeb-53cbcbba6d12
+                      - '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                         title: Test screen 2
                         description: This is an test screen 2 description
+                        size: 75
                         regions:
-                          - name: top
-                            channels:
-                              - 497f6eca-6276-4993-bfeb-53cbbbba6d05
-                          - name: buttom
-                            channels:
-                              - 497f6eca-6276-4993-bfeb-53cbbbba6d11
-                              - 497f6eca-6276-4993-bfeb-53cbaaba6f12
+                          - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
+                          - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
                         tags:
                           - itk
                           - screens

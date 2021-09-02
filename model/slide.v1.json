@@ -3,6 +3,7 @@
   "type": "object",
   "x-examples": {},
   "description": "",
+  "examples": [],
   "properties": {
     "@context": {
       "type": "string"
@@ -23,7 +24,7 @@
       }
     },
     "modified": {
-      "format": "time",
+      "format": "date-time",
       "type": "integer"
     },
     "created": {
@@ -78,6 +79,5 @@
     "duration",
     "content",
     "published"
-  ],
-  "examples": []
+  ]
 }

@@ -15,22 +15,20 @@
     "description": {
       "type": "string"
     },
+    "size": {
+      "type": "integer"
+    },
+    "location": {
+      "type": "string"
+    },
     "regions": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "playlists": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
+        "type": "string"
       }
+    },
+    "@layoutId": {
+      "type": "string"
     },
     "tags": {
       "type": "array",
