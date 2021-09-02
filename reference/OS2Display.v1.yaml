@@ -11,6 +11,135 @@ info:
 servers:
   - url: 'http://os2display-api.local.itkdev.dk'
 paths:
+  '/v1/layout/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: The UUID for the screen layout to fetch
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/layout.v1.json
+              examples:
+                4-way-split:
+                  value:
+                    '@context': /contexts/Layout
+                    '@id': /v1/layout/497f6ecf-642-4883-cfeb-53cbf3bf82a9
+                    title: 4 way split
+                    grid:
+                      rows: 2
+                      columns: 2
+                    regions:
+                      - id: region1
+                        name: Region 1
+                        gridArea:
+                          - a
+                      - id: region2
+                        name: Region 2
+                        gridArea:
+                          - b
+                      - id: region3
+                        name: Region 3
+                        gridArea:
+                          - c
+                      - id: region4
+                        name: Region 4
+                        gridArea:
+                          - d
+                Complicated:
+                  value:
+                    '@context': /contexts/Layout
+                    '@id': /v1/layout/875f6ecf-642-4638-cfeb-53cbf3feab234
+                    title: 4 way split
+                    grid:
+                      rows: 4
+                      columns: 12
+                    regions:
+                      - id: region1
+                        name: Region 1
+                        gridArea:
+                          - a
+                          - d
+                      - id: region2
+                        name: Region 2
+                        gridArea:
+                          - e
+                          - m
+                      - id: region3
+                        name: Region 3
+                        gridArea:
+                          - q
+                          - 'y'
+                      - id: region4
+                        name: Region 4
+                        gridArea:
+                          - cc
+                          - oo
+                      - id: region5
+                        name: Region 5
+                        gridArea:
+                          - ss
+                          - vv
+                      - id: region6
+                        name: Region 6
+                        gridArea:
+                          - f
+                          - rr
+                3x3:
+                  value:
+                    '@context': /contexts/Layout
+                    '@id': /v1/layout/1370fecf-642-4883-abcf-53cbf3bf8233
+                    title: 3x3
+                    grid:
+                      rows: 3
+                      columns: 3
+                    regions:
+                      - id: region1
+                        name: Region 1
+                        gridArea:
+                          - a
+                      - id: region2
+                        name: Region 2
+                        gridArea:
+                          - b
+                      - id: region3
+                        name: Region 3
+                        gridArea:
+                          - c
+                      - id: region4
+                        name: Region 4
+                        gridArea:
+                          - d
+                      - id: region5
+                        name: Region 5
+                        gridArea:
+                          - e
+                      - id: region6
+                        name: Region 6
+                        gridArea:
+                          - f
+                      - id: region7
+                        name: Region 7
+                        gridArea:
+                          - g
+                      - id: region8
+                        name: Region 8
+                        gridArea:
+                          - h
+                      - id: region9
+                        name: Region 9
+                        gridArea:
+                          - i
+      operationId: get-v1-layout-id
   /v1/screens:
     get:
       summary: Get screens
@@ -80,6 +209,7 @@ paths:
                         location: M2.3
                         regions:
                           - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
+                        inGroups: /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
                         tags:
                           - itk
                           - screens
@@ -101,6 +231,7 @@ paths:
                         regions:
                           - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
                           - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
+                        inGroups: /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
                         tags:
                           - itk
                           - screens
@@ -165,6 +296,7 @@ paths:
                     location: M2.3
                     regions:
                       - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
+                    inGroups: /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
                     tags:
                       - itk
                       - screens
@@ -188,6 +320,7 @@ paths:
                     regions:
                       - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
                       - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
+                    inGroups: /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
                     tags:
                       - itk
                       - screens
@@ -287,6 +420,20 @@ paths:
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-screen-id-region-regionId-playlist
+  '/v1/screen/{id}/groups':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-v1-screens-id-groups
   /v1/playlists:
     get:
       summary: Get playlists based on offset
@@ -332,7 +479,8 @@ paths:
                     '@id': /v1/playlists
                     '@type': 'hydra:Collection'
                     'hydra:member':
-                      - '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                      - '@context': /contexts/playlist
+                        '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                         title: The first playlist
                         description: This is an playlist wiht image and video
                         tags:
@@ -343,6 +491,8 @@ paths:
                         created: 1622557262
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
+                        inGroups: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/groups
+                        onScreens: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
                         published:
                           from: 1622557262
                           to: 1622588254
@@ -401,6 +551,8 @@ paths:
                     created: 1622557262
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
+                    inGroups: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/groups
+                    onScreens: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
                     published:
                       from: 1622557262
                       to: 1622588254
@@ -410,6 +562,60 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
       description: Get single playlist
+  '/v1/playlists/{id}/groups':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-playlists-id-groups
+  '/v1/playlists/{id}/screens':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-playlists-id-screens
+  '/v1/playlist/{id}/slide/add':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    post:
+      summary: ''
+      operationId: post-v1-playlist-id-slide-add
+      responses:
+        '200':
+          description: OK
+  '/v1/playlist/{id}/slide/{slideId}/remove':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: slideId
+        in: path
+        required: true
+    delete:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-playlist-id-slide-slideId-remove
   /v1/slides:
     get:
       summary: Get slides
@@ -473,8 +679,8 @@ paths:
                             - fade: false
                             - icon: true
                               url: 'http://test.local.itkdev.dk/icon.png'
-                        onFollowingScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                        playlists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                        onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
+                        onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
                         duration: 4500
                         published: 1622555123
                         content:
@@ -496,8 +702,8 @@ paths:
                           '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                           options:
                             - fade: true
-                        onFollowingScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                        playlists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                        onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
+                        onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
                         duration: 90000
                         published: 1622555475
                         content:
@@ -564,8 +770,8 @@ paths:
                         - fade: false
                         - icon: true
                           url: 'http://test.local.itkdev.dk/icon.png'
-                    onFollowingScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                    playlists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                    onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
+                    onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
                     duration: 45000
                     published: 1622555123
                     content:
@@ -589,8 +795,8 @@ paths:
                       '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: true
-                    onFollowingScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                    playlists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                    onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
+                    onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
                     duration: 90000
                     published: 1622555475
                     content:
@@ -601,6 +807,30 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-slide-id
       description: Get single slide based on UUID
+  '/v1/slide/{id}/screens':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-slide-id-screens
+  '/v1/slide/{id}/playlists':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-v1-slide-id-playlists
   /v1/templates:
     get:
       summary: Get list of templates
@@ -909,135 +1139,6 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-media-id
       description: Retrieves a Media resource
-  '/v1/layout/{id}':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: The UUID for the screen layout to fetch
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: ../model/layout.v1.json
-              examples:
-                4-way-split:
-                  value:
-                    '@context': /contexts/Layout
-                    '@id': /v1/layout/497f6ecf-642-4883-cfeb-53cbf3bf82a9
-                    title: 4 way split
-                    grid:
-                      rows: 2
-                      columns: 2
-                    regions:
-                      - id: region1
-                        name: Region 1
-                        gridArea:
-                          - a
-                      - id: region2
-                        name: Region 2
-                        gridArea:
-                          - b
-                      - id: region3
-                        name: Region 3
-                        gridArea:
-                          - c
-                      - id: region4
-                        name: Region 4
-                        gridArea:
-                          - d
-                Complicated:
-                  value:
-                    '@context': /contexts/Layout
-                    '@id': /v1/layout/875f6ecf-642-4638-cfeb-53cbf3feab234
-                    title: 4 way split
-                    grid:
-                      rows: 4
-                      columns: 12
-                    regions:
-                      - id: region1
-                        name: Region 1
-                        gridArea:
-                          - a
-                          - d
-                      - id: region2
-                        name: Region 2
-                        gridArea:
-                          - e
-                          - m
-                      - id: region3
-                        name: Region 3
-                        gridArea:
-                          - q
-                          - 'y'
-                      - id: region4
-                        name: Region 4
-                        gridArea:
-                          - cc
-                          - oo
-                      - id: region5
-                        name: Region 5
-                        gridArea:
-                          - ss
-                          - vv
-                      - id: region6
-                        name: Region 6
-                        gridArea:
-                          - f
-                          - rr
-                3x3:
-                  value:
-                    '@context': /contexts/Layout
-                    '@id': /v1/layout/1370fecf-642-4883-abcf-53cbf3bf8233
-                    title: 3x3
-                    grid:
-                      rows: 3
-                      columns: 3
-                    regions:
-                      - id: region1
-                        name: Region 1
-                        gridArea:
-                          - a
-                      - id: region2
-                        name: Region 2
-                        gridArea:
-                          - b
-                      - id: region3
-                        name: Region 3
-                        gridArea:
-                          - c
-                      - id: region4
-                        name: Region 4
-                        gridArea:
-                          - d
-                      - id: region5
-                        name: Region 5
-                        gridArea:
-                          - e
-                      - id: region6
-                        name: Region 6
-                        gridArea:
-                          - f
-                      - id: region7
-                        name: Region 7
-                        gridArea:
-                          - g
-                      - id: region8
-                        name: Region 8
-                        gridArea:
-                          - h
-                      - id: region9
-                        name: Region 9
-                        gridArea:
-                          - i
-      operationId: get-v1-layout-id
 components:
   schemas: {}
   parameters: {}

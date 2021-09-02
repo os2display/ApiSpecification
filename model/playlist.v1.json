@@ -34,6 +34,12 @@
     "createdBy": {
       "type": "string"
     },
+    "inGroups": {
+      "type": "string"
+    },
+    "onScreens": {
+      "type": "string"
+    },
     "published": {
       "type": "object",
       "required": [

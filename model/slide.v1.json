@@ -54,10 +54,10 @@
         }
       }
     },
-    "screens": {
+    "onScreens": {
       "type": "string"
     },
-    "playlists": {
+    "onPlaylists": {
       "type": "string"
     },
     "duration": {

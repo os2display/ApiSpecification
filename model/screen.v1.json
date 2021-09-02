@@ -38,6 +38,9 @@
         "type": "string"
       }
     },
+    "inGroups": {
+      "type": "string"
+    },
     "layout": {
       "type": "string"
     },
