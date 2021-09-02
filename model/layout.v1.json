@@ -1,0 +1,46 @@
+{
+  "title": "screenLayout.v1",
+  "type": "object",
+  "properties": {
+    "@context": {
+      "type": "string"
+    },
+    "@id": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "grid": {
+      "type": "object",
+      "properties": {
+        "rows": {
+          "type": "integer"
+        },
+        "columns": {
+          "type": "integer"
+        }
+      }
+    },
+    "regions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "gridArea": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}
