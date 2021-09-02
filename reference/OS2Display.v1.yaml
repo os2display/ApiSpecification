@@ -967,49 +967,31 @@ paths:
                         gridArea:
                           - a
                           - d
-                        playlists:
-                          - id: uniquePlaylist1
-                            url: ./fixtures/playlist1.json
                       - id: region2
                         name: Region 2
                         gridArea:
                           - e
                           - m
-                        playlists:
-                          - id: uniquePlaylist2
-                            url: ./fixtures/playlist2.json
                       - id: region3
                         name: Region 3
                         gridArea:
                           - q
                           - 'y'
-                        playlists:
-                          - id: uniquePlaylist3
-                            url: ./fixtures/playlist3.json
                       - id: region4
                         name: Region 4
                         gridArea:
                           - cc
                           - oo
-                        playlists:
-                          - id: uniquePlaylist4
-                            url: ./fixtures/playlist4.json
                       - id: region5
                         name: Region 5
                         gridArea:
                           - ss
                           - vv
-                        playlists:
-                          - id: uniquePlaylist5
-                            url: ./fixtures/playlist5.json
                       - id: region6
                         name: Region 6
                         gridArea:
                           - f
                           - rr
-                        playlists:
-                          - id: uniquePlaylist6
-                            url: ./fixtures/playlist6.json
                 3x3:
                   value:
                     '@context': /contexts/Layout
