@@ -18,6 +18,17 @@
     "size": {
       "type": "integer"
     },
+    "dimensions": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "integer"
+        },
+        "width": {
+          "type": "integer"
+        }
+      }
+    },
     "location": {
       "type": "string"
     },
@@ -27,7 +38,7 @@
         "type": "string"
       }
     },
-    "@layoutId": {
+    "layout": {
       "type": "string"
     },
     "tags": {

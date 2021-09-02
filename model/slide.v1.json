@@ -54,16 +54,22 @@
         }
       }
     },
+    "screens": {
+      "type": "string"
+    },
+    "playlists": {
+      "type": "string"
+    },
     "duration": {
       "type": "integer",
       "minimum": 0
     },
-    "content": {
-      "type": "object"
-    },
     "published": {
       "type": "integer",
       "default": 0
+    },
+    "content": {
+      "type": "object"
     }
   },
   "required": [
@@ -77,7 +83,7 @@
     "createdBy",
     "template",
     "duration",
-    "content",
-    "published"
+    "published",
+    "content"
   ]
 }

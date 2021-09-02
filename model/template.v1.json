@@ -2,6 +2,7 @@
   "title": "Template",
   "type": "object",
   "x-examples": {},
+  "examples": [],
   "properties": {
     "@context": {
       "type": "string"
@@ -42,7 +43,6 @@
       "type": "object",
       "required": [
         "component",
-        "assest",
         "options",
         "content"
       ],
@@ -75,6 +75,12 @@
         },
         "content": {
           "type": "object"
+        },
+        "admin": {
+          "type": "string"
+        },
+        "schema": {
+          "type": "string"
         }
       }
     }

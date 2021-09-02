@@ -45,9 +45,29 @@
           "uri": {
             "type": "string",
             "format": "uri"
+          },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "height": {
+                "type": "integer"
+              },
+              "width": {
+                "type": "integer"
+              }
+            }
+          },
+          "sha": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
           }
         }
       }
+    },
+    "license": {
+      "type": "string"
     }
   },
   "required": [
