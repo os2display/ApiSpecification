@@ -34,28 +34,6 @@
     "createdBy": {
       "type": "string"
     },
-    "slides": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "@id": {
-            "type": "string"
-          },
-          "weight": {
-            "type": "integer"
-          },
-          "duration": {
-            "type": "integer"
-          }
-        },
-        "required": [
-          "@id",
-          "weight",
-          "duration"
-        ]
-      }
-    },
     "published": {
       "type": "object",
       "required": [
@@ -81,7 +59,6 @@
     "created",
     "modifiedBy",
     "createdBy",
-    "slides",
     "published"
   ]
 }

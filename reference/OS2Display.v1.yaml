@@ -33,6 +33,7 @@ paths:
               examples:
                 Screen 1:
                   value:
+                    '@context': /contexts/Screen
                     '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
                     title: Test screen 1
                     description: This is an test screen 1 description
@@ -49,6 +50,7 @@ paths:
                     createdBy: Ole Olesen
                 Screen 2:
                   value:
+                    '@context': /contexts/Screen
                     '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                     title: Test screen 2
                     description: This is an test screen 2 description
@@ -124,10 +126,12 @@ paths:
               examples:
                 Screens:
                   value:
+                    '@context': /contexts/Screen
                     '@id': /v1/screens
                     '@type': 'hydra:Collection'
                     'hydra:member':
-                      - '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
                         title: Test screen 1
                         description: This is an test screen 1 description
                         size: 50
@@ -141,7 +145,8 @@ paths:
                         created: 1622524267
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                      - '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                         title: Test screen 2
                         description: This is an test screen 2 description
                         size: 75
@@ -199,6 +204,7 @@ paths:
               examples:
                 Playlist 1:
                   value:
+                    '@context': /contexts/playlist
                     '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     title: The first playlist
                     description: This is an playlist wiht image and video
@@ -210,13 +216,6 @@ paths:
                     created: 1622557262
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
-                    slides:
-                      - '@id': /v1/slide/497f6eca-4576-4883-cfeb-53cbffba6f08
-                        weight: 5
-                        duration: 10
-                      - '@id': /v1/slide/597f6eca-4576-1454-cf15-52cb3eba6b85
-                        weight: 10
-                        duration: 125
                     published:
                       from: 1622557262
                       to: 1622588254
@@ -267,6 +266,7 @@ paths:
               examples:
                 Playlists:
                   value:
+                    '@context': /contexts/playlist
                     '@id': /v1/playlists
                     '@type': 'hydra:Collection'
                     'hydra:member':
@@ -281,13 +281,6 @@ paths:
                         created: 1622557262
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                        slides:
-                          - '@id': /v1/slide/497f6eca-4576-4883-cfeb-53cbffba6f08
-                            weight: 5
-                            duration: 10
-                          - '@id': /v1/slide/597f6eca-4576-1454-cf15-52cb3eba6b85
-                            weight: 10
-                            duration: 125
                         published:
                           from: 1622557262
                           to: 1622588254
