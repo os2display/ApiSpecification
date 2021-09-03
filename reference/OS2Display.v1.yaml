@@ -170,7 +170,7 @@ paths:
                             name: Region 9
                             gridArea:
                               - i
-                    'hydra:totalItems': 0
+                    'hydra:totalItems': 3
                     'hydra:view':
                       '@id': string
                       '@type': 'hydra:PartialCollectionView'
@@ -192,7 +192,7 @@ paths:
           in: query
           name: page
           required: true
-  '/v1/layout/{id}':
+  '/v1/layouts/{id}':
     parameters:
       - schema:
           type: string
@@ -381,7 +381,7 @@ paths:
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/Screen
-                        '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
+                        '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54
                         title: Test screen 1
                         description: This is an test screen 1 description
                         size: 50
@@ -391,26 +391,27 @@ paths:
                         layout: '/v1/layout/{id}'
                         location: M2.3
                         regions:
-                          - /v1/playlists?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54&regionId=region1
-                        inScreenGroups: /v1/screenGroups?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54
+                          - /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlists
+                        inScreenGroups: /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
                         modified: '2021-09-21T14:02:00Z'
                         created: '2021-07-21T10:25:00Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                       - '@context': /contexts/Screen
-                        '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                        '@id': /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                         title: Test screen 2
                         description: This is an test screen 2 description
                         size: 75
                         dimensions:
                           width: 1920
                           height: 1080
-                        layout: '/v1/layout/{id}'
+                        layout: '/v1/layouts/{id}'
                         location: M2.5
                         regions:
-                          - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region1
-                          - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region2
-                        inScreenGroups: /v1/screenGroups?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region1/playlists
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region2/playlists
+                        inScreenGroups:
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
                         modified: '2021-08-04T10:12:00Z'
                         created: '2021-07-21T12:05:00Z'
                         modifiedBy: Jens Jensen
@@ -437,49 +438,7 @@ paths:
           in: query
           name: page
           required: true
-        - schema:
-            type: string
-          in: query
-          name: playlistId
-          description: UUID for a playlist to filter on
-        - schema:
-            type: string
-          in: query
-          name: slideId
-          description: UUID for a slide to filter on
-  /v1/screen:
-    post:
-      summary: ''
-      operationId: post-v1-screen
-      responses:
-        '201':
-          description: Created
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../model/screen.v1.json
-            examples:
-              example-1:
-                value:
-                  '@context': string
-                  '@id': string
-                  title: string
-                  description: string
-                  size: 0
-                  dimensions:
-                    height: 0
-                    width: 0
-                  location: string
-                  regions:
-                    - string
-                  inScreenGroups: string
-                  layout: string
-                  modified: '2019-08-24T14:15:22Z'
-                  created: '2019-08-24T14:15:22Z'
-                  modifiedBy: string
-                  createdBy: string
-  '/v1/screen/{id}':
+  '/v1/screens/{id}':
     parameters:
       - schema:
           type: string
@@ -502,7 +461,7 @@ paths:
                 Screen 1:
                   value:
                     '@context': /contexts/Screen
-                    '@id': /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54
+                    '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54
                     title: Test screen 1
                     description: This is an test screen 1 description
                     size: 50
@@ -512,8 +471,8 @@ paths:
                     layout: '/v1/layout/{id}'
                     location: M2.3
                     regions:
-                      - /v1/playlists?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54&regionId=region1
-                    inScreenGroups: /v1/screenGroups?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54
+                      - /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlists
+                    inScreenGroups: /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
                     modified: '2021-09-21T14:02:00Z'
                     created: '2021-07-21T10:25:00Z'
                     modifiedBy: Jens Jensen
@@ -521,20 +480,20 @@ paths:
                 Screen 2:
                   value:
                     '@context': /contexts/Screen
-                    '@id': /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                    '@id': /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e
                     title: Test screen 2
                     description: This is an test screen 2 description
                     size: 75
                     dimensions:
                       width: 1920
                       height: 1080
-                    layout: '/v1/layout/{id}'
+                    layout: '/v1/layouts/{id}'
                     location: M2.5
                     regions:
-                      - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region1
-                      - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region2
+                      - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region1/playlists
+                      - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region2/playlists
                     inScreenGroups:
-                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
+                      - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
                     modified: '2021-08-04T10:12:00Z'
                     created: '2021-07-21T12:05:00Z'
                     modifiedBy: Jens Jensen
@@ -550,14 +509,301 @@ paths:
       summary: ''
       operationId: delete-v1-screen-id
       responses:
-        '200':
-          description: OK
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete existing screen
     put:
       summary: ''
       operationId: put-v1-screen-id
       responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screen.v1.json
+      description: Updated existing screen
+    post:
+      summary: ''
+      operationId: post-v1-screen-id
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Link to the new ressource
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screen.v1.json
+        description: ''
+      description: Create new screeen
+  '/v1/screens/{id}/groups':
+    get:
+      summary: Get playlists based on offset
+      tags: []
+      responses:
         '200':
           description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/playlists
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/screenGroups.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+              examples:
+                Groups:
+                  value:
+                    '@id': /v1/screens/
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/ScreenGroup
+                        '@id': /v1/screenGroup/67276898-0228-4982-bf5e-fc35ad7d594b
+                        title: Meeting rooms
+                        description: The meeting rooms on dokk1
+                        modified: '2019-08-24T14:15:22Z'
+                        created: '2019-08-24T14:15:22Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Jens Jensen
+                      - '@context': /contexts/ScreenGroup
+                        '@id': f7e00d41-3fef-44fd-b9fa-0ac4c47641a6
+                        title: Dokk1 level 1
+                        description: All screens on level 1 in dokk1
+                        modified: '2021-08-24T14:05:45Z'
+                        created: '2021-08-24T10:10:22Z'
+                        modifiedBy: Ole Olesen
+                        createdBy: Jens Jensen
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': string
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': string
+                      'hydra:last': string
+                      'hydra:next': string
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-screens-id-groups
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            format: int32
+            default: 1
+          in: query
+          name: page
+          required: true
+      description: Get all groups this screen is in
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+        description: Screens ID
+  '/v1/screens/{id}/groups/{groupId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: groupId
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-v1-screens-id-groups-groupId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Link screen to screen group
+    delete:
+      summary: ''
+      operationId: delete-v1-screens-id-groups-groupId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Remove link between screen and screen group
+  '/v1/screens/{id}/regions/{regionId}/playlists':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: regionId
+        in: path
+        required: true
+    get:
+      summary: Get playlists based on offset
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/playlists
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/playlist.v1.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+              examples:
+                Playlists:
+                  value:
+                    '@context': /contexts/playlist
+                    '@id': /v1/playlists
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/playlist
+                        '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                        title: The first playlist
+                        description: This is an playlist wiht image and video
+                        modified: '2021-09-21T17:32:28Z'
+                        created: '2021-09-21T17:00:01Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                        onScreens: /v1/playlists/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
+                        published:
+                          from: '2021-09-21T17:00:01Z'
+                          to: '2021-07-22T17:00:01Z'
+                    'hydra:totalItems': 1
+                    'hydra:view':
+                      '@id': /v1/playlists?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/playlists?page=1
+                      'hydra:last': /v1/playlists?page=1
+                      'hydra:next': /v1/playlists?page=1
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-screens-id-regions-regionId-playlists
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            format: int32
+            default: 1
+          in: query
+          name: page
+          required: true
+      description: Get all playlists in an given screens region
+  '/v1/screens/{id}/regions/{regionId}/playlists/{playlistId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: regionId
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: playlistId
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-v1-screens-id-regions-regionId-playlists-playlistId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Add playlist to an screens region
+    delete:
+      summary: ''
+      operationId: delete-v1-screens-id-regions-regionId-playlists-playlistId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete playlist from an screens region
   /v1/screenGroups:
     get:
       summary: Get playlists based on offset
@@ -599,19 +845,19 @@ paths:
               examples:
                 Screen groups:
                   value:
-                    '@id': /v1/playlists
+                    '@id': /v1/screenGroups
                     '@type': 'hydra:Collection'
                     'hydra:member':
-                      - '@context': /contexts/ScreenGroup
-                        '@id': /v1/screenGroup/67276898-0228-4982-bf5e-fc35ad7d594b
+                      - '@context': /contexts/ScreenGroups
+                        '@id': /v1/screenGroups/67276898-0228-4982-bf5e-fc35ad7d594b
                         title: Meeting rooms
                         description: The meeting rooms on dokk1
                         modified: '2019-08-24T14:15:22Z'
                         created: '2019-08-24T14:15:22Z'
                         modifiedBy: Jens Jensen
                         createdBy: Jens Jensen
-                      - '@context': /contexts/ScreenGroup
-                        '@id': f7e00d41-3fef-44fd-b9fa-0ac4c47641a6
+                      - '@context': /contexts/ScreenGroups
+                        '@id': /v1/screenGroups/f7e00d41-3fef-44fd-b9fa-0ac4c47641a6
                         title: Dokk1 level 1
                         description: All screens on level 1 in dokk1
                         modified: '2021-08-24T14:05:45Z'
@@ -639,7 +885,7 @@ paths:
           in: query
           name: page
           required: true
-  '/v1/screenGroup/{id}':
+  '/v1/screenGroups/{id}':
     parameters:
       - schema:
           type: string
@@ -683,6 +929,48 @@ paths:
               schema:
                 $ref: ../model/screenGroups.json
       operationId: get-v1-screens-id-groups
+      description: Get screeen group
+    post:
+      summary: ''
+      operationId: post-v1-screenGroup-id
+      responses:
+        '201':
+          description: Created
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screenGroups.json
+      description: Create new screeen group
+    put:
+      summary: ''
+      operationId: put-v1-screenGroup-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Update existing screen group
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screenGroups.json
+    delete:
+      summary: ''
+      operationId: delete-v1-screenGroup-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Remove existing screen group
   /v1/playlists:
     get:
       summary: Get playlists based on offset
@@ -736,7 +1024,7 @@ paths:
                         created: '2021-09-21T17:00:01Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                        onScreens: /v1/screens?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                        onScreens: /v1/playlists/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
                         published:
                           from: '2021-09-21T17:00:01Z'
                           to: '2021-07-22T17:00:01Z'
@@ -761,23 +1049,8 @@ paths:
           in: query
           name: page
           required: true
-        - schema:
-            type: string
-          in: query
-          name: screenId
-          description: Screen UUID to filter on
-        - schema:
-            type: string
-          in: query
-          name: regionId
-          description: Region on a screen to filter on
-        - schema:
-            type: string
-          in: query
-          name: slideId
-          description: UUID for slide to filter on
       description: Get playlists based on offset
-  '/v1/playlist/{id}':
+  '/v1/playlists/{id}':
     parameters:
       - schema:
           type: string
@@ -806,7 +1079,7 @@ paths:
                     created: '2021-09-21T17:00:01Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
-                    onScreens: '/v1/screens/{screeenId}?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457'
+                    onScreens: /v1/playlists/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
                     published:
                       from: '2021-09-21T17:00:01Z'
                       to: '2021-07-22T17:00:01Z'
@@ -816,21 +1089,205 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
       description: Get single playlist
-  '/v1/playlist/{id}/slide':
+    post:
+      summary: ''
+      operationId: post-v1-playlists-id
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Create new playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/playlist.v1.json
+    put:
+      summary: ''
+      operationId: put-v1-playlists-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Update existing playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/playlist.v1.json
+    delete:
+      summary: ''
+      operationId: delete-v1-playlists-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete existing playlist
+  '/v1/playlists/{id}/screens':
     parameters:
       - schema:
           type: string
         name: id
         in: path
         required: true
-    post:
-      summary: ''
-      operationId: post-v1-playlist-id-slide-add
+    get:
+      summary: Get screens
+      tags: []
       responses:
         '200':
           description: OK
-      parameters: []
-  '/v1/playlist/{id}/slide/{slideId}/remove':
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/screens
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/screen.v1.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    required:
+                      - '@id'
+                      - '@type'
+                      - 'hydra:first'
+                      - 'hydra:last'
+                      - 'hydra:next'
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+                required:
+                  - '@id'
+                  - '@type'
+                  - 'hydra:member'
+                  - 'hydra:totalItems'
+                  - 'hydra:view'
+              examples:
+                Screens:
+                  value:
+                    '@context': /contexts/Screen
+                    '@id': /v1/screens
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54
+                        title: Test screen 1
+                        description: This is an test screen 1 description
+                        size: 50
+                        dimensions:
+                          width: 1920
+                          height: 1080
+                        layout: '/v1/layout/{id}'
+                        location: M2.3
+                        regions:
+                          - /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlists
+                        inScreenGroups: /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
+                        modified: '2021-09-21T14:02:00Z'
+                        created: '2021-07-21T10:25:00Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                        title: Test screen 2
+                        description: This is an test screen 2 description
+                        size: 75
+                        dimensions:
+                          width: 1920
+                          height: 1080
+                        layout: '/v1/layouts/{id}'
+                        location: M2.5
+                        regions:
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region1/playlists
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region2/playlists
+                        inScreenGroups:
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
+                        modified: '2021-08-04T10:12:00Z'
+                        created: '2021-07-21T12:05:00Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': /v1/screens?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/screens?page=1
+                      'hydra:last': /v1/screens?page=1
+                      'hydra:next': /v1/screens?page=1
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-playlists-id-screens
+      description: Get screeen with pagination for a given playlist
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 1
+          in: query
+          name: page
+          required: true
+  '/v1/playlists/{id}/screens/{screenId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: screenId
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-v1-playlists-id-screens-screenId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Create link between playlist and screen
+    delete:
+      summary: ''
+      operationId: delete-v1-playlists-id-screens-screenId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete link between playlist and screen
+  '/v1/playlist/{id}/slide/{slideId}':
     parameters:
       - schema:
           type: string
@@ -843,10 +1300,27 @@ paths:
         in: path
         required: true
     delete:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-v1-playlist-id-slide-slideId-remove
+      summary: ''
+      operationId: delete-v1-playlist-id-slide-slideId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete slides from a playlist
+    put:
+      summary: ''
+      operationId: put-v1-playlist-id-slide-slideId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Add slides to a playlist
   /v1/slides:
     get:
       summary: Get slides
@@ -953,7 +1427,7 @@ paths:
           name: page
           required: true
       description: Get slides based on offset
-  '/v1/slide/{id}':
+  '/v1/slides/{id}':
     parameters:
       - schema:
           type: string
@@ -1022,6 +1496,323 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-slide-id
       description: Get single slide based on UUID
+    post:
+      summary: ''
+      operationId: post-v1-slides-id
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Create new slide
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/slide.v1.json
+    put:
+      summary: ''
+      operationId: put-v1-slides-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/slide.v1.json
+      description: Update existing slide
+    delete:
+      summary: ''
+      operationId: delete-v1-slides-id
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Delete existing slide
+  '/v1/slides/{id}/screens':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get screens
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/screens
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/screen.v1.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    required:
+                      - '@id'
+                      - '@type'
+                      - 'hydra:first'
+                      - 'hydra:last'
+                      - 'hydra:next'
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+                required:
+                  - '@id'
+                  - '@type'
+                  - 'hydra:member'
+                  - 'hydra:totalItems'
+                  - 'hydra:view'
+              examples:
+                Screens:
+                  value:
+                    '@context': /contexts/Screen
+                    '@id': /v1/screens
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54
+                        title: Test screen 1
+                        description: This is an test screen 1 description
+                        size: 50
+                        dimensions:
+                          width: 1920
+                          height: 1080
+                        layout: '/v1/layout/{id}'
+                        location: M2.3
+                        regions:
+                          - /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlists
+                        inScreenGroups: /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
+                        modified: '2021-09-21T14:02:00Z'
+                        created: '2021-07-21T10:25:00Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                      - '@context': /contexts/Screen
+                        '@id': /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                        title: Test screen 2
+                        description: This is an test screen 2 description
+                        size: 75
+                        dimensions:
+                          width: 1920
+                          height: 1080
+                        layout: '/v1/layouts/{id}'
+                        location: M2.5
+                        regions:
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region1/playlists
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/regions/region2/playlists
+                        inScreenGroups:
+                          - /v1/screens/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
+                        modified: '2021-08-04T10:12:00Z'
+                        created: '2021-07-21T12:05:00Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                    'hydra:totalItems': 2
+                    'hydra:view':
+                      '@id': /v1/screens?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/screens?page=1
+                      'hydra:last': /v1/screens?page=1
+                      'hydra:next': /v1/screens?page=1
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-slides-id-screens
+      description: Get all screeens this slide is display on with pagination
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 1
+          in: query
+          name: page
+          required: true
+  '/v1/slides/{id}/screens/{screenId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: screenId
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-v1-slides-id-screens-screenId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Link slide to screen
+    delete:
+      summary: ''
+      operationId: delete-v1-slides-id-screens-screenId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Remove link between slide and screen
+  '/v1/slides/{id}/playlists':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+    get:
+      summary: Get playlists based on offset
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/playlists
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/playlist.v1.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+              examples:
+                Playlists:
+                  value:
+                    '@context': /contexts/playlist
+                    '@id': /v1/playlists
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/playlist
+                        '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                        title: The first playlist
+                        description: This is an playlist wiht image and video
+                        modified: '2021-09-21T17:32:28Z'
+                        created: '2021-09-21T17:00:01Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Ole Olesen
+                        onScreens: /v1/playlists/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
+                        published:
+                          from: '2021-09-21T17:00:01Z'
+                          to: '2021-07-22T17:00:01Z'
+                    'hydra:totalItems': 1
+                    'hydra:view':
+                      '@id': /v1/playlists?page=1
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': /v1/playlists?page=1
+                      'hydra:last': /v1/playlists?page=1
+                      'hydra:next': /v1/playlists?page=1
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-slides-id-playlists
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            format: int32
+            default: 1
+          in: query
+          name: page
+          required: true
+      description: Get playlists that the slide is on
+  '/v1/slides/{id}/playlists/{playlistId}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
+      - schema:
+          type: string
+        name: playlistId
+        in: path
+        required: true
+    put:
+      summary: ''
+      operationId: put-v1-slides-id-playlists-playlistId
+      responses:
+        '201':
+          description: Created
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Add slide to playlist
+    delete:
+      summary: ''
+      operationId: delete-v1-slides-id-playlists-playlistId
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+        '500':
+          $ref: '#/components/responses/500'
+      description: Remove slide from playlist
   /v1/templates:
     get:
       summary: Get list of templates
