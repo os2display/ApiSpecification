@@ -38,24 +38,19 @@
         "type": "string"
       }
     },
-    "inGroups": {
+    "inScreenGroups": {
       "type": "string"
     },
     "layout": {
       "type": "string"
     },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "modified": {
-      "format": "time",
-      "type": "integer"
+      "type": "string",
+      "format": "date-time"
     },
     "created": {
-      "type": "integer"
+      "type": "string",
+      "format": "date-time"
     },
     "modifiedBy": {
       "type": "string"
@@ -69,7 +64,6 @@
     "title",
     "description",
     "regions",
-    "tags",
     "modified",
     "created",
     "modifiedBy",

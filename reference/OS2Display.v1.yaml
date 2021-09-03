@@ -11,6 +11,187 @@ info:
 servers:
   - url: 'http://os2display-api.local.itkdev.dk'
 paths:
+  /v1/layouts:
+    get:
+      summary: Get screens
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/screens
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/layout.v1.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    required:
+                      - '@id'
+                      - '@type'
+                      - 'hydra:first'
+                      - 'hydra:last'
+                      - 'hydra:next'
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+                required:
+                  - '@id'
+                  - '@type'
+                  - 'hydra:member'
+                  - 'hydra:totalItems'
+                  - 'hydra:view'
+              examples:
+                Layouts:
+                  value:
+                    '@id': /v1/screens
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/Layout
+                        '@id': /v1/layout/497f6ecf-642-4883-cfeb-53cbf3bf82a9
+                        title: 4 way split
+                        grid:
+                          rows: 2
+                          columns: 2
+                        regions:
+                          - id: region1
+                            name: Region 1
+                            gridArea:
+                              - a
+                          - id: region2
+                            name: Region 2
+                            gridArea:
+                              - b
+                          - id: region3
+                            name: Region 3
+                            gridArea:
+                              - c
+                          - id: region4
+                            name: Region 4
+                            gridArea:
+                              - d
+                      - '@context': /contexts/Layout
+                        '@id': /v1/layout/875f6ecf-642-4638-cfeb-53cbf3feab234
+                        title: 4 way split
+                        grid:
+                          rows: 4
+                          columns: 12
+                        regions:
+                          - id: region1
+                            name: Region 1
+                            gridArea:
+                              - a
+                              - d
+                          - id: region2
+                            name: Region 2
+                            gridArea:
+                              - e
+                              - m
+                          - id: region3
+                            name: Region 3
+                            gridArea:
+                              - q
+                              - 'y'
+                          - id: region4
+                            name: Region 4
+                            gridArea:
+                              - cc
+                              - oo
+                          - id: region5
+                            name: Region 5
+                            gridArea:
+                              - ss
+                              - vv
+                          - id: region6
+                            name: Region 6
+                            gridArea:
+                              - f
+                              - rr
+                      - '@context': /contexts/Layout
+                        '@id': /v1/layout/1370fecf-642-4883-abcf-53cbf3bf8233
+                        title: 3x3
+                        grid:
+                          rows: 3
+                          columns: 3
+                        regions:
+                          - id: region1
+                            name: Region 1
+                            gridArea:
+                              - a
+                          - id: region2
+                            name: Region 2
+                            gridArea:
+                              - b
+                          - id: region3
+                            name: Region 3
+                            gridArea:
+                              - c
+                          - id: region4
+                            name: Region 4
+                            gridArea:
+                              - d
+                          - id: region5
+                            name: Region 5
+                            gridArea:
+                              - e
+                          - id: region6
+                            name: Region 6
+                            gridArea:
+                              - f
+                          - id: region7
+                            name: Region 7
+                            gridArea:
+                              - g
+                          - id: region8
+                            name: Region 8
+                            gridArea:
+                              - h
+                          - id: region9
+                            name: Region 9
+                            gridArea:
+                              - i
+                    'hydra:totalItems': 0
+                    'hydra:view':
+                      '@id': string
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': string
+                      'hydra:last': string
+                      'hydra:next': string
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-layouts
+      description: Get layouts with pagination
+      parameters:
+        - schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 1
+          in: query
+          name: page
+          required: true
   '/v1/layout/{id}':
     parameters:
       - schema:
@@ -140,6 +321,7 @@ paths:
                         gridArea:
                           - i
       operationId: get-v1-layout-id
+      description: Get layout based on id
   /v1/screens:
     get:
       summary: Get screens
@@ -208,14 +390,10 @@ paths:
                         layout: '/v1/layout/{id}'
                         location: M2.3
                         regions:
-                          - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
-                        inGroups: /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
-                        tags:
-                          - itk
-                          - screens
-                          - test
-                        modified: 1622535248
-                        created: 1622524267
+                          - /v1/playlists?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54&regionId=region1
+                        inScreenGroups: /v1/screenGroups?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54
+                        modified: '2021-09-21T14:02:00Z'
+                        created: '2021-07-21T10:25:00Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                       - '@context': /contexts/Screen
@@ -229,15 +407,11 @@ paths:
                         layout: '/v1/layout/{id}'
                         location: M2.5
                         regions:
-                          - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
-                          - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
-                        inGroups: /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
-                        tags:
-                          - itk
-                          - screens
-                          - test
-                        modified: 1622535248
-                        created: 1622524267
+                          - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region1
+                          - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region2
+                        inScreenGroups: /v1/screenGroups?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e
+                        modified: '2021-08-04T10:12:00Z'
+                        created: '2021-07-21T12:05:00Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                     'hydra:totalItems': 2
@@ -262,6 +436,16 @@ paths:
           in: query
           name: page
           required: true
+        - schema:
+            type: string
+          in: query
+          name: playlistId
+          description: UUID for a playlist to filter on
+        - schema:
+            type: string
+          in: query
+          name: slideId
+          description: UUID for a slide to filter on
   '/v1/screen/{id}':
     parameters:
       - schema:
@@ -295,14 +479,10 @@ paths:
                     layout: '/v1/layout/{id}'
                     location: M2.3
                     regions:
-                      - /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/region/region1/playlist
-                    inGroups: /v1/screen/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
-                    tags:
-                      - itk
-                      - screens
-                      - test
-                    modified: 1622535248
-                    created: 1622524267
+                      - /v1/playlists?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54&regionId=region1
+                    inScreenGroups: /v1/screenGroups?screenId=497f6eca-6276-1596-bfeb-53ceb43a6f54
+                    modified: '2021-09-21T14:02:00Z'
+                    created: '2021-07-21T10:25:00Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                 Screen 2:
@@ -318,15 +498,12 @@ paths:
                     layout: '/v1/layout/{id}'
                     location: M2.5
                     regions:
-                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region1/playlist
-                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/region/region2/playlist
-                    inGroups: /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
-                    tags:
-                      - itk
-                      - screens
-                      - test
-                    modified: 1622535248
-                    created: 1622524267
+                      - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region1
+                      - /v1/playlists?screenId=854f6ecb-6276-6854-bfeb-53cffffa6d1e&regionId=region2
+                    inScreenGroups:
+                      - /v1/screen/854f6ecb-6276-6854-bfeb-53cffffa6d1e/groups
+                    modified: '2021-08-04T10:12:00Z'
+                    created: '2021-07-21T12:05:00Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
         '404':
@@ -336,97 +513,8 @@ paths:
       operationId: get-screen
       description: Retrieve basic screen information and regions configuraiton
       parameters: []
-  '/v1/screen/{id}/region/{regionId}/playlist':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-        description: The UUID for the screen to get playlist from
-      - schema:
-          type: string
-        name: regionId
-        in: path
-        description: The UUID for the playlist to get
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/ld+json:
-              schema:
-                type: object
-                properties:
-                  '@id':
-                    type: string
-                    default: /v1/playlists
-                  '@type':
-                    type: string
-                    default: 'hydra:Collection'
-                  'hydra:member':
-                    type: array
-                    items:
-                      $ref: ../model/playlist.v1.json
-                  'hydra:totalItems':
-                    type: integer
-                  'hydra:view':
-                    type: object
-                    properties:
-                      '@id':
-                        type: string
-                      '@type':
-                        type: string
-                        default: 'hydra:PartialCollectionView'
-                      'hydra:first':
-                        type: string
-                      'hydra:last':
-                        type: string
-                      'hydra:next':
-                        type: string
-              examples:
-                Playlists:
-                  value:
-                    '@context': /contexts/playlist
-                    '@id': /v1/playlists
-                    '@type': 'hydra:Collection'
-                    'hydra:member':
-                      - '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
-                        title: The first playlist
-                        description: This is an playlist wiht image and video
-                        tags:
-                          - itk
-                          - video
-                          - mock
-                        modified: 1622557486
-                        created: 1622557262
-                        modifiedBy: Jens Jensen
-                        createdBy: Ole Olesen
-                        published:
-                          from: 1622557262
-                          to: 1622588254
-                    'hydra:totalItems': 1
-                    'hydra:view':
-                      '@id': /v1/playlists?page=1
-                      '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': /v1/playlists?page=1
-                      'hydra:last': /v1/playlists?page=1
-                      'hydra:next': /v1/playlists?page=1
-        '404':
-          $ref: '#/components/responses/404'
-        '500':
-          $ref: '#/components/responses/500'
-      operationId: get-v1-screen-id-region-regionId-playlist
-  '/v1/screen/{id}/groups':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
+  /v1/screenGroups:
+    parameters: []
     get:
       summary: Your GET endpoint
       tags: []
@@ -483,19 +571,14 @@ paths:
                         '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                         title: The first playlist
                         description: This is an playlist wiht image and video
-                        tags:
-                          - itk
-                          - video
-                          - mock
-                        modified: 1622557486
-                        created: 1622557262
+                        modified: '2021-09-21T17:32:28Z'
+                        created: '2021-09-21T17:00:01Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
-                        inGroups: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/groups
-                        onScreens: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
+                        onScreens: /v1/screens?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457
                         published:
-                          from: 1622557262
-                          to: 1622588254
+                          from: '2021-09-21T17:00:01Z'
+                          to: '2021-07-22T17:00:01Z'
                     'hydra:totalItems': 1
                     'hydra:view':
                       '@id': /v1/playlists?page=1
@@ -517,6 +600,21 @@ paths:
           in: query
           name: page
           required: true
+        - schema:
+            type: string
+          in: query
+          name: screenId
+          description: Screen UUID to filter on
+        - schema:
+            type: string
+          in: query
+          name: regionId
+          description: Region on a screen to filter on
+        - schema:
+            type: string
+          in: query
+          name: slideId
+          description: UUID for slide to filter on
       description: Get playlists based on offset
   '/v1/playlist/{id}':
     parameters:
@@ -543,49 +641,20 @@ paths:
                     '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     title: The first playlist
                     description: This is an playlist wiht image and video
-                    tags:
-                      - itk
-                      - video
-                      - mock
-                    modified: 1622557486
-                    created: 1622557262
+                    modified: '2021-09-21T17:32:28Z'
+                    created: '2021-09-21T17:00:01Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
-                    inGroups: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/groups
-                    onScreens: /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
+                    onScreens: /v1/screens?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457
                     published:
-                      from: 1622557262
-                      to: 1622588254
+                      from: '2021-09-21T17:00:01Z'
+                      to: '2021-07-22T17:00:01Z'
         '404':
           $ref: '#/components/responses/404'
         '500':
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
       description: Get single playlist
-  '/v1/playlists/{id}/groups':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-v1-playlists-id-groups
-  '/v1/playlists/{id}/screens':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-v1-playlists-id-screens
   '/v1/playlist/{id}/slide/add':
     parameters:
       - schema:
@@ -665,12 +734,8 @@ paths:
                         '@id': /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10
                         title: Image Slide
                         description: This is the first slide named one
-                        tags:
-                          - itk
-                          - mock
-                          - example
-                        modified: 1622555123
-                        created: 1622554031
+                        modified: '2012-09-03T12:21:56Z'
+                        created: '2021-09-01T10:04:00Z'
                         modifiedBy: Ole Olesen
                         createdBy: Jens Jensen
                         template:
@@ -679,9 +744,9 @@ paths:
                             - fade: false
                             - icon: true
                               url: 'http://test.local.itkdev.dk/icon.png'
-                        onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                        onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
-                        duration: 4500
+                        onScreens: /v1/screens?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                        onPlaylists: /v1/playlists?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                        duration: 45000
                         published: 1622555123
                         content:
                           text: This is slide content
@@ -690,20 +755,16 @@ paths:
                         '@id': /v1/slide/787f6ece-6276-5982-beeb-53cba4f36f12
                         title: Video Slide
                         description: This is the next slide named two
-                        tags:
-                          - itk
-                          - mock
-                          - example
-                        modified: 1622555475
-                        created: 1622553404
+                        modified: '2012-09-03T12:32:04Z'
+                        created: '2021-08-14T10:54:43Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                         template:
                           '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                           options:
                             - fade: true
-                        onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                        onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                        onScreens: /v1/screens?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                        onPlaylists: /v1/playlists?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
                         duration: 90000
                         published: 1622555475
                         content:
@@ -756,12 +817,8 @@ paths:
                     '@id': /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10
                     title: Image Slide
                     description: This is the first slide named one
-                    tags:
-                      - itk
-                      - mock
-                      - example
-                    modified: 1622555123
-                    created: 1622554031
+                    modified: '2012-09-03T12:21:56Z'
+                    created: '2021-09-01T10:04:00Z'
                     modifiedBy: Ole Olesen
                     createdBy: Jens Jensen
                     template:
@@ -770,8 +827,8 @@ paths:
                         - fade: false
                         - icon: true
                           url: 'http://test.local.itkdev.dk/icon.png'
-                    onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                    onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                    onScreens: /v1/screens?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                    onPlaylists: /v1/playlists?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
                     duration: 45000
                     published: 1622555123
                     content:
@@ -783,20 +840,16 @@ paths:
                     '@id': /v1/slide/787f6ece-6276-5982-beeb-53cba4f36f12
                     title: Video Slide
                     description: This is the next slide named two
-                    tags:
-                      - itk
-                      - mock
-                      - example
-                    modified: 1622555475
-                    created: 1622553404
+                    modified: '2012-09-03T12:32:04Z'
+                    created: '2021-08-14T10:54:43Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                     template:
                       '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                       options:
                         - fade: true
-                    onScreens: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
-                    onPlaylists: /v1/slide/a97f6ec4-5278-4993-bfeb-53cdedea6d10/playlists
+                    onScreens: /v1/screens?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
+                    onPlaylists: /v1/playlists?slideId=a97f6ec4-5278-4993-bfeb-53cdedea6d10
                     duration: 90000
                     published: 1622555475
                     content:
@@ -807,30 +860,6 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-slide-id
       description: Get single slide based on UUID
-  '/v1/slide/{id}/screens':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-v1-slide-id-screens
-  '/v1/slide/{id}/playlists':
-    parameters:
-      - schema:
-          type: string
-        name: id
-        in: path
-        required: true
-    get:
-      summary: Your GET endpoint
-      tags: []
-      responses: {}
-      operationId: get-v1-slide-id-playlists
   /v1/templates:
     get:
       summary: Get list of templates
@@ -878,11 +907,8 @@ paths:
                       - '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                         title: Template 1
                         description: This is a image example template
-                        tags:
-                          - itk
-                          - mock
-                        modified: 1622555659
-                        created: 1622552649
+                        modified: '2021-09-03T10:04:59Z'
+                        created: '2021-08-21T11:22:00Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olensen
                         icon: 'http://templates.itkdev.dk/image/icon.png'
@@ -890,7 +916,7 @@ paths:
                           admin: 'http://templates.itkdev.dk/image/form.json'
                           schema: 'http://templates.itkdev.dk/image/schema.json'
                           component: 'http://templates.itkdev.dk/image/image.js'
-                          assest:
+                          assets:
                             - type: css
                               url: 'http://templates.itkdev.dk/image/image.css'
                           options:
@@ -944,11 +970,8 @@ paths:
                     '@id': /v1/template/457d6ecb-6378-4299-bfcb-53cbaaaa6f65
                     title: Template 1
                     description: This is a image example template
-                    tags:
-                      - itk
-                      - mock
-                    modified: 1622555659
-                    created: 1622552649
+                    modified: '2021-09-03T10:04:59Z'
+                    created: '2021-08-21T11:22:00Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olensen
                     icon: 'http://templates.itkdev.dk/image/icon.png'
@@ -1019,11 +1042,8 @@ paths:
                         title: Sunset image
                         description: An image of a sunset
                         license: ''
-                        tags:
-                          - itk
-                          - example
-                        modified: 1622556728
-                        created: 1622550342
+                        modified: '2017-09-01T10:45:06Z'
+                        created: '2021-08-12T20:30:29Z'
                         modifiedBy: Jens Jensen
                         createdBy: Ole Olesen
                         assets:
@@ -1034,19 +1054,23 @@ paths:
                               height: 1024
                             sha: dsfge32424asdsa
                             size: '450222'
-                      - '@id': /v1/media/597f6eca-4576-1454-cf15-52cb3eba6b85
+                      - '@context': /contexts/Media
+                        '@id': /v1/media/597f6eca-4576-1454-cf15-52cb3eba6b85
                         title: Video
                         description: The bunny example movie
-                        tags:
-                          - itk
-                          - mock
-                        modified: 1622554784
-                        created: 1622556728
+                        license: ''
+                        modified: '2017-09-03T11:18:08Z'
+                        created: '2021-08-22T20:00:31Z'
                         modifiedBy: Ole Olesen
                         createdBy: Jens Jensen
                         assets:
                           - type: video/mp4
                             uri: 'https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4'
+                            dimensions:
+                              width: 1920
+                              height: 1080
+                            sha: dsfge32424asdsa
+                            size: '450222'
                     'hydra:totalItems': 2
                     'hydra:view':
                       '@id': /v1/media?page=1
@@ -1096,11 +1120,8 @@ paths:
                     title: Sunset image
                     description: An image of a sunset
                     license: ''
-                    tags:
-                      - itk
-                      - example
-                    modified: 1622556728
-                    created: 1622550342
+                    modified: '2017-09-01T10:45:06Z'
+                    created: '2021-08-12T20:30:29Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
                     assets:
@@ -1118,11 +1139,8 @@ paths:
                     title: Video
                     description: The bunny example movie
                     license: ''
-                    tags:
-                      - itk
-                      - mock
-                    modified: 1622554784
-                    created: 1622556728
+                    modified: '2017-09-03T11:18:08Z'
+                    created: '2021-08-22T20:00:31Z'
                     modifiedBy: Ole Olesen
                     createdBy: Jens Jensen
                     assets:

@@ -16,18 +16,13 @@
     "description": {
       "type": "string"
     },
-    "tags": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
     "modified": {
-      "format": "time",
-      "type": "integer"
+      "type": "string",
+      "format": "date-time"
     },
     "created": {
-      "type": "integer"
+      "type": "string",
+      "format": "date-time"
     },
     "modifiedBy": {
       "type": "string"
@@ -89,7 +84,6 @@
     "@id",
     "title",
     "description",
-    "tags",
     "modified",
     "created",
     "modifiedBy",
