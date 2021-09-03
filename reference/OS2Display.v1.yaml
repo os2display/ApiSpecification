@@ -322,6 +322,7 @@ paths:
                           - i
       operationId: get-v1-layout-id
       description: Get layout based on id
+      parameters: []
   /v1/screens:
     get:
       summary: Get screens
@@ -446,6 +447,38 @@ paths:
           in: query
           name: slideId
           description: UUID for a slide to filter on
+  /v1/screen:
+    post:
+      summary: ''
+      operationId: post-v1-screen
+      responses:
+        '201':
+          description: Created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screen.v1.json
+            examples:
+              example-1:
+                value:
+                  '@context': string
+                  '@id': string
+                  title: string
+                  description: string
+                  size: 0
+                  dimensions:
+                    height: 0
+                    width: 0
+                  location: string
+                  regions:
+                    - string
+                  inScreenGroups: string
+                  layout: string
+                  modified: '2019-08-24T14:15:22Z'
+                  created: '2019-08-24T14:15:22Z'
+                  modifiedBy: string
+                  createdBy: string
   '/v1/screen/{id}':
     parameters:
       - schema:
@@ -513,14 +546,142 @@ paths:
       operationId: get-screen
       description: Retrieve basic screen information and regions configuraiton
       parameters: []
+    delete:
+      summary: ''
+      operationId: delete-v1-screen-id
+      responses:
+        '200':
+          description: OK
+    put:
+      summary: ''
+      operationId: put-v1-screen-id
+      responses:
+        '200':
+          description: OK
   /v1/screenGroups:
-    parameters: []
+    get:
+      summary: Get playlists based on offset
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/ld+json:
+              schema:
+                type: object
+                properties:
+                  '@id':
+                    type: string
+                    default: /v1/playlists
+                  '@type':
+                    type: string
+                    default: 'hydra:Collection'
+                  'hydra:member':
+                    type: array
+                    items:
+                      $ref: ../model/screenGroups.json
+                  'hydra:totalItems':
+                    type: integer
+                  'hydra:view':
+                    type: object
+                    properties:
+                      '@id':
+                        type: string
+                      '@type':
+                        type: string
+                        default: 'hydra:PartialCollectionView'
+                      'hydra:first':
+                        type: string
+                      'hydra:last':
+                        type: string
+                      'hydra:next':
+                        type: string
+              examples:
+                Screen groups:
+                  value:
+                    '@id': /v1/playlists
+                    '@type': 'hydra:Collection'
+                    'hydra:member':
+                      - '@context': /contexts/ScreenGroup
+                        '@id': /v1/screenGroup/67276898-0228-4982-bf5e-fc35ad7d594b
+                        title: Meeting rooms
+                        description: The meeting rooms on dokk1
+                        modified: '2019-08-24T14:15:22Z'
+                        created: '2019-08-24T14:15:22Z'
+                        modifiedBy: Jens Jensen
+                        createdBy: Jens Jensen
+                      - '@context': /contexts/ScreenGroup
+                        '@id': f7e00d41-3fef-44fd-b9fa-0ac4c47641a6
+                        title: Dokk1 level 1
+                        description: All screens on level 1 in dokk1
+                        modified: '2021-08-24T14:05:45Z'
+                        created: '2021-08-24T10:10:22Z'
+                        modifiedBy: Ole Olesen
+                        createdBy: Jens Jensen
+                    'hydra:totalItems': 0
+                    'hydra:view':
+                      '@id': string
+                      '@type': 'hydra:PartialCollectionView'
+                      'hydra:first': string
+                      'hydra:last': string
+                      'hydra:next': string
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      operationId: get-v1-screenGroups
+      parameters:
+        - schema:
+            type: integer
+            minimum: 0
+            format: int32
+            default: 1
+          in: query
+          name: page
+          required: true
+  '/v1/screenGroup/{id}':
+    parameters:
+      - schema:
+          type: string
+        name: id
+        in: path
+        required: true
     get:
       summary: Your GET endpoint
       tags: []
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ../model/screenGroups.json
+              examples:
+                Meeting rooms:
+                  value:
+                    '@context': /contexts/ScreenGroup
+                    '@id': /v1/screenGroup/67276898-0228-4982-bf5e-fc35ad7d594b
+                    title: Meeting rooms
+                    description: The meeting rooms on dokk1
+                    modified: '2019-08-24T14:15:22Z'
+                    created: '2019-08-24T14:15:22Z'
+                    modifiedBy: Jens Jensen
+                    createdBy: Jens Jensen
+                Dokk1 level 1:
+                  value:
+                    '@context': /contexts/ScreenGroup
+                    '@id': f7e00d41-3fef-44fd-b9fa-0ac4c47641a6
+                    title: Dokk1 level 1
+                    description: All screens on level 1 in dokk1
+                    modified: '2021-08-24T14:05:45Z'
+                    created: '2021-08-24T10:10:22Z'
+                    modifiedBy: Ole Olesen
+                    createdBy: Jens Jensen
+        '':
+          content:
+            application/json:
+              schema:
+                $ref: ../model/screenGroups.json
       operationId: get-v1-screens-id-groups
   /v1/playlists:
     get:
@@ -645,7 +806,7 @@ paths:
                     created: '2021-09-21T17:00:01Z'
                     modifiedBy: Jens Jensen
                     createdBy: Ole Olesen
-                    onScreens: /v1/screens?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457
+                    onScreens: '/v1/screens/{screeenId}?playlistId=29ff6eca-8778-6789-bfeb-53e4bf4a6457'
                     published:
                       from: '2021-09-21T17:00:01Z'
                       to: '2021-07-22T17:00:01Z'
@@ -655,7 +816,7 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
       description: Get single playlist
-  '/v1/playlist/{id}/slide/add':
+  '/v1/playlist/{id}/slide':
     parameters:
       - schema:
           type: string
@@ -668,6 +829,7 @@ paths:
       responses:
         '200':
           description: OK
+      parameters: []
   '/v1/playlist/{id}/slide/{slideId}/remove':
     parameters:
       - schema:

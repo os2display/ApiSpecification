@@ -43,6 +43,10 @@
           },
           "dimensions": {
             "type": "object",
+            "required": [
+              "height",
+              "width"
+            ],
             "properties": {
               "height": {
                 "type": "integer"
@@ -58,7 +62,13 @@
           "size": {
             "type": "string"
           }
-        }
+        },
+        "required": [
+          "uri",
+          "dimensions",
+          "sha",
+          "size"
+        ]
       }
     },
     "license": {
@@ -66,13 +76,13 @@
     }
   },
   "required": [
-    "@id",
     "title",
     "description",
     "modified",
     "created",
     "modifiedBy",
     "createdBy",
-    "assets"
+    "assets",
+    "license"
   ]
 }

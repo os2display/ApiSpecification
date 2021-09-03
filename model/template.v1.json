@@ -38,8 +38,11 @@
       "type": "object",
       "required": [
         "component",
+        "assets",
         "options",
-        "content"
+        "content",
+        "admin",
+        "schema"
       ],
       "properties": {
         "component": {
@@ -81,7 +84,6 @@
     }
   },
   "required": [
-    "@id",
     "title",
     "description",
     "modified",

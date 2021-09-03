@@ -20,6 +20,10 @@
     },
     "dimensions": {
       "type": "object",
+      "required": [
+        "height",
+        "width"
+      ],
       "properties": {
         "height": {
           "type": "integer"
@@ -60,10 +64,13 @@
     }
   },
   "required": [
-    "@id",
     "title",
     "description",
+    "size",
+    "dimensions",
+    "location",
     "regions",
+    "layout",
     "modified",
     "created",
     "modifiedBy",

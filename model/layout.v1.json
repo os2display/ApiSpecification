@@ -13,6 +13,10 @@
     },
     "grid": {
       "type": "object",
+      "required": [
+        "rows",
+        "columns"
+      ],
       "properties": {
         "rows": {
           "type": "integer"
@@ -39,8 +43,18 @@
               "type": "string"
             }
           }
-        }
+        },
+        "required": [
+          "id",
+          "title",
+          "gridArea"
+        ]
       }
     }
-  }
+  },
+  "required": [
+    "title",
+    "grid",
+    "regions"
+  ]
 }
