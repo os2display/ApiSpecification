@@ -591,7 +591,7 @@ paths:
               examples:
                 Groups:
                   value:
-                    '@id': /v1/screens/
+                    '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/ScreenGroup
@@ -614,9 +614,9 @@ paths:
                     'hydra:view':
                       '@id': string
                       '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': string
-                      'hydra:last': string
-                      'hydra:next': string
+                      'hydra:first': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups?page=1
+                      'hydra:last': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groupsring?page=1
+                      'hydra:next': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/groups?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -726,7 +726,7 @@ paths:
                 Playlists:
                   value:
                     '@context': /contexts/playlist
-                    '@id': /v1/playlists
+                    '@id': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/regions/region1/playlists
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/playlist
@@ -745,9 +745,9 @@ paths:
                     'hydra:view':
                       '@id': /v1/playlists?page=1
                       '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': /v1/playlists?page=1
-                      'hydra:last': /v1/playlists?page=1
-                      'hydra:next': /v1/playlists?page=1
+                      'hydra:first': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/regions/region1/playlists?page=1
+                      'hydra:last': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/regions/region1/playlists?page=1
+                      'hydra:next': /v1/screens/497f6eca-6276-1596-bfeb-53ceb43a6f54/regions/region1/playlists?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -862,7 +862,7 @@ paths:
                         created: '2021-08-24T10:10:22Z'
                         modifiedBy: Ole Olesen
                         createdBy: Jens Jensen
-                    'hydra:totalItems': 0
+                    'hydra:totalItems': 2
                     'hydra:view':
                       '@id': string
                       '@type': 'hydra:PartialCollectionView'
@@ -1186,7 +1186,7 @@ paths:
                 Screens:
                   value:
                     '@context': /contexts/Screen
-                    '@id': /v1/screens
+                    '@id': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/Screen
@@ -1228,9 +1228,9 @@ paths:
                     'hydra:view':
                       '@id': /v1/screens?page=1
                       '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': /v1/screens?page=1
-                      'hydra:last': /v1/screens?page=1
-                      'hydra:next': /v1/screens?page=1
+                      'hydra:first': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens?page=1
+                      'hydra:last': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens?page=1
+                      'hydra:next': /v1/playlist/29ff6eca-8778-6789-bfeb-53e4bf4a6457/screens?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -1592,7 +1592,7 @@ paths:
                 Screens:
                   value:
                     '@context': /contexts/Screen
-                    '@id': /v1/screens
+                    '@id': /v1/slides/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/Screen
@@ -1634,9 +1634,9 @@ paths:
                     'hydra:view':
                       '@id': /v1/screens?page=1
                       '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': /v1/screens?page=1
-                      'hydra:last': /v1/screens?page=1
-                      'hydra:next': /v1/screens?page=1
+                      'hydra:first': /v1/slides/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens?page=1
+                      'hydra:last': /v1/slides/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens?page=1
+                      'hydra:next': /v1/slides/a97f6ec4-5278-4993-bfeb-53cdedea6d10/screens?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
@@ -1734,7 +1734,7 @@ paths:
                 Playlists:
                   value:
                     '@context': /contexts/playlist
-                    '@id': /v1/playlists
+                    '@id': /v1/slide/29ff6eca-8778-6789-bfeb-53e4bf4a6457/playlists
                     '@type': 'hydra:Collection'
                     'hydra:member':
                       - '@context': /contexts/playlist
@@ -1753,9 +1753,9 @@ paths:
                     'hydra:view':
                       '@id': /v1/playlists?page=1
                       '@type': 'hydra:PartialCollectionView'
-                      'hydra:first': /v1/playlists?page=1
-                      'hydra:last': /v1/playlists?page=1
-                      'hydra:next': /v1/playlists?page=1
+                      'hydra:first': /v1/slide/29ff6eca-8778-6789-bfeb-53e4bf4a6457/playlists?page=1
+                      'hydra:last': /v1/slide/29ff6eca-8778-6789-bfeb-53e4bf4a6457/playlists?page=1
+                      'hydra:next': /v1/slide/29ff6eca-8778-6789-bfeb-53e4bf4a6457/playlists?page=1
         '404':
           $ref: '#/components/responses/404'
         '500':
