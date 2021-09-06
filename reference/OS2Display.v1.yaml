@@ -437,6 +437,26 @@ paths:
           in: query
           name: page
           required: true
+    post:
+      summary: ''
+      operationId: post-v1-screen-id
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Link to the new resource
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screen.v1.json
+        description: ''
+      description: Create new screeen
   '/v1/screens/{id}':
     parameters:
       - schema:
@@ -530,26 +550,6 @@ paths:
             schema:
               $ref: ../model/screen.v1.json
       description: Updated existing screen
-    post:
-      summary: ''
-      operationId: post-v1-screen-id
-      responses:
-        '201':
-          description: Created
-          headers:
-            Location:
-              schema:
-                type: string
-              description: Link to the new ressource
-        '500':
-          $ref: '#/components/responses/500'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../model/screen.v1.json
-        description: ''
-      description: Create new screeen
   '/v1/screens/{id}/groups':
     get:
       summary: Get playlists based on offset
@@ -884,6 +884,25 @@ paths:
           name: page
           required: true
       description: Get all screen groups
+    post:
+      summary: ''
+      operationId: post-v1-screenGroup-id
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Link to the new resource
+        '500':
+          $ref: '#/components/responses/500'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/screenGroups.json
+      description: Create new screeen group
   '/v1/screenGroups/{id}':
     parameters:
       - schema:
@@ -924,20 +943,6 @@ paths:
                     createdBy: Jens Jensen
       description: Get screen group
       operationId: get-v1-screenGroups-id
-    post:
-      summary: ''
-      operationId: post-v1-screenGroup-id
-      responses:
-        '201':
-          description: Created
-        '500':
-          $ref: '#/components/responses/500'
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../model/screenGroups.json
-      description: Create new screeen group
     put:
       summary: ''
       operationId: put-v1-screenGroup-id
@@ -1044,6 +1049,27 @@ paths:
           name: page
           required: true
       description: Get playlists based on offset
+    post:
+      summary: ''
+      operationId: post-v1-playlists-id
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Link to the new resource
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Create new playlist
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/playlist.v1.json
   '/v1/playlists/{id}':
     parameters:
       - schema:
@@ -1083,22 +1109,6 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-playlist-id
       description: Get single playlist
-    post:
-      summary: ''
-      operationId: post-v1-playlists-id
-      responses:
-        '201':
-          description: Created
-        '404':
-          $ref: '#/components/responses/404'
-        '500':
-          $ref: '#/components/responses/500'
-      description: Create new playlist
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../model/playlist.v1.json
     put:
       summary: ''
       operationId: put-v1-playlists-id
@@ -1420,6 +1430,27 @@ paths:
           name: page
           required: true
       description: Get slides based on offset
+    post:
+      summary: ''
+      operationId: post-v1-slides-id
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: Link to the new resource
+        '404':
+          $ref: '#/components/responses/404'
+        '500':
+          $ref: '#/components/responses/500'
+      description: Create new slide
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ../model/slide.v1.json
   '/v1/slides/{id}':
     parameters:
       - schema:
@@ -1489,22 +1520,6 @@ paths:
           $ref: '#/components/responses/500'
       operationId: get-v1-slide-id
       description: Get single slide based on UUID
-    post:
-      summary: ''
-      operationId: post-v1-slides-id
-      responses:
-        '201':
-          description: Created
-        '404':
-          $ref: '#/components/responses/404'
-        '500':
-          $ref: '#/components/responses/500'
-      description: Create new slide
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: ../model/slide.v1.json
     put:
       summary: ''
       operationId: put-v1-slides-id

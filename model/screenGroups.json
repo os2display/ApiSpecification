@@ -1,6 +1,7 @@
 {
   "title": "screenGroups",
   "type": "object",
+  "examples": [],
   "properties": {
     "@context": {
       "type": "string"
@@ -30,6 +31,7 @@
     }
   },
   "required": [
+    "@id",
     "title",
     "description",
     "modified",

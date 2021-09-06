@@ -51,6 +51,7 @@
     }
   },
   "required": [
+    "@id",
     "title",
     "description",
     "modified",
